@@ -37,6 +37,9 @@ function start_game() {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
+    player.jumps = 0;
+    player.jumping = false;
+
     cursors = this.input.keyboard.createCursorKeys();
 
     stars = this.add.group();
@@ -64,10 +67,19 @@ function start_game() {
       player.frame = 4;
     }
 
-    var standing = this.physics.arcade.collide(player, platforms);
+    if (this.physics.arcade.collide(player, platforms) &&
+        player.body.touching.down) {
+      player.jumps = 0;
+    }
 
-    if (cursors.up.isDown && player.body.touching.down && standing) {
-      player.body.velocity.y = -250;
+    if (cursors.up.isDown) {
+      if (player.jumps < 2 && !player.jumping) {
+        player.body.velocity.y = -250;
+        player.jumps += 1;
+        player.jumping = true;
+      }
+    } else {
+      player.jumping = false;
     }
 
     this.physics.arcade.collide(stars, platforms);
