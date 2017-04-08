@@ -2,6 +2,8 @@ function start_game() {
   var platforms = null;
   var player = null;
 
+  var cursors = null;
+
   function preload() {
     this.load.image('sky', 'assets/img/sky.png');
     this.load.image('ground', 'assets/img/platform.png');
@@ -33,10 +35,29 @@ function start_game() {
 
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+    cursors = this.input.keyboard.createCursorKeys();
   }
 
   function update() {
-    this.physics.arcade.collide(player, platforms);
+    player.body.velocity.x = 0;
+
+    if (cursors.left.isDown) {
+      player.body.velocity.x = -150;
+      player.animations.play('left');
+    } else if (cursors.right.isDown) {
+      player.body.velocity.x = 150;
+      player.animations.play('right');
+    } else {
+      player.animations.stop();
+      player.frame = 4;
+    }
+
+    var standing = this.physics.arcade.collide(player, platforms);
+
+    if (cursors.up.isDown && player.body.touching.down && standing) {
+      player.body.velocity.y = -250;
+    }
   }
 
 
