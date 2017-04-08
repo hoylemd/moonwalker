@@ -1,5 +1,6 @@
 function start_game() {
   var platforms = null;
+  var player = null;
 
   function preload() {
     this.load.image('sky', 'assets/img/sky.png');
@@ -23,9 +24,19 @@ function start_game() {
 
     var ledge2 = platforms.create(-150, 250, 'ground');
     ledge2.body.immovable = true;
+
+    player = this.add.sprite(32, this.world.height - 150, 'dude');
+    this.physics.arcade.enable(player);
+    player.body.bounce.y = 0.2;
+    player.body.gravity.y = 300;
+    player.body.collideWorldBounds = true;
+
+    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    player.animations.add('right', [5, 6, 7, 8], 10, true);
   }
 
   function update() {
+    this.physics.arcade.collide(player, platforms);
   }
 
 
