@@ -1,6 +1,7 @@
 function start_game() {
   var platforms = null;
   var player = null;
+  var stars = null;
 
   var cursors = null;
 
@@ -37,6 +38,16 @@ function start_game() {
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     cursors = this.input.keyboard.createCursorKeys();
+
+    stars = this.add.group();
+    stars.enableBody = true;
+
+    for (var i = 0; i < 12; i += 1) {
+      var star = stars.create(i * 70, 0, 'star');
+      star.body.gravity.y = 6;
+
+      star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    }
   }
 
   function update() {
@@ -58,6 +69,8 @@ function start_game() {
     if (cursors.up.isDown && player.body.touching.down && standing) {
       player.body.velocity.y = -250;
     }
+
+    this.physics.arcade.collide(stars, platforms);
   }
 
 
