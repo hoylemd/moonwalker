@@ -3,11 +3,19 @@ let Player = require('./player');
 
 let play_state = {
   load_level: function(spec) {
+    const GRAVITY = 1200;
+    this.game.physics.arcade.gravity.y = GRAVITY;
+
+    this.platforms = this.game.add.group();
     spec.platforms.forEach(this.spawn_platform, this);
+
     this.player = this.spawn_character('player', spec.hero);
   },
-  spawn_platform: function(platform) {
-    this.game.add.sprite(platform.x, platform.y, platform.image);
+  spawn_platform: function(spec) {
+    let platform = this.platforms.create(spec.x, spec.y, spec.image);
+    this.game.physics.enable(platform);
+    platform.body.allowGravity = false;
+    platform.body.immovable = true;
   },
   spawn_character: function(name, spec) {
     this.characters[name] = new Player(this.game, spec.x, spec.y);
@@ -24,6 +32,9 @@ let play_state = {
     }
 
     this.player.move(direction);
+  },
+  handle_collisions: function() {
+    this.game.physics.arcade.collide(this.player, this.platforms);
   },
 
   init: function () {
@@ -56,6 +67,7 @@ let play_state = {
   },
   update: function () {
     this.handle_input();
+    this.handle_collisions();
   }
 };
 
