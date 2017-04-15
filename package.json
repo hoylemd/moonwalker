@@ -1,8 +1,8 @@
 {
-  "name": "y",
+  "name": "phazer_tutorial",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "dependencies": {
     "phaser": "^2.6.2"
   },
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "browserify js/main.js -o dist/js/main.js"
+    "compile": "browserify src/js/main.js -o dist/js/main.js"
   },
   "author": "",
   "license": "ISC"
