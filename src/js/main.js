@@ -3,6 +3,9 @@ let Phaser = require('./vendor').phaser;
 let play_state = {
   preload: function () {
     this.game.load.image('background', 'images/background.png');
+  },
+  create: function () {
+    this.game.add.image(0, 0, 'background');
   }
 };
 
