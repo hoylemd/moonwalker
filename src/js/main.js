@@ -4,7 +4,7 @@ let Player = require('./player');
 let play_state = {
   load_level: function(spec) {
     spec.platforms.forEach(this.spawn_platform, this);
-    this.spawn_character('player', spec.hero);
+    this.player = this.spawn_character('player', spec.hero);
   },
   spawn_platform: function(platform) {
     this.game.add.sprite(platform.x, platform.y, platform.image);
@@ -12,9 +12,23 @@ let play_state = {
   spawn_character: function(name, spec) {
     this.characters[name] = new Player(this.game, spec.x, spec.y);
     this.game.add.existing(this.characters[name]);
+    return this.characters[name];
+  },
+  handle_input: function() {
+    let direction = 0;
+    if (this.keys.left.isDown) {
+      direction -= 1;
+    }
+    if (this.keys.right.isDown) {
+      direction += 1;
+    }
+
+    this.player.move(direction);
   },
 
   init: function () {
+    this.game.renderer.renderSession.roundPixels = true;
+
     this.characters = {};
 
     this.keys = this.game.input.keyboard.addKeys({
@@ -39,6 +53,9 @@ let play_state = {
     this.game.add.image(0, 0, 'background');
 
     this.load_level(this.game.cache.getJSON('level:1'));
+  },
+  update: function () {
+    this.handle_input();
   }
 };
 
