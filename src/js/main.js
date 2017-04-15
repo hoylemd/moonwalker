@@ -49,7 +49,9 @@ let play_state = {
     });
 
     this.keys.up.onDown.add(function() {
-      this.player.jump();
+      if (this.player.jump()) {
+        this.sfx.jump.play();
+      }
     }, this);
   },
   preload: function () {
@@ -63,10 +65,16 @@ let play_state = {
 
     this.game.load.image('player', 'images/hero_stopped.png');
 
+    this.game.load.audio('sfx:jump', 'audio/jump.wav');
+
     this.game.load.json('level:1', 'data/level01.json');
   },
   create: function () {
     this.game.add.image(0, 0, 'background');
+
+    this.sfx = {
+      jump: this.game.add.audio('sfx:jump')
+    };
 
     this.load_level(this.game.cache.getJSON('level:1'));
   },
