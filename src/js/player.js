@@ -5,9 +5,12 @@ function Player(game, x, y) {
 
   this.anchor.set(0.5, 0.5);
 
-  this.speed = 2.5;  // moves at 2.5 pixels per frame
+  this.game.physics.enable(this);
+  this.body.collideWorldBounds = true;
+
+  this.speed = 200;
   this.move = function(direction) {
-    this.x += direction * this.speed;
+    this.body.velocity.x = direction *  this.speed;
   };
 }
 
