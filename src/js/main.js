@@ -14,6 +14,9 @@ let play_state = {
     this.game.add.existing(this.characters[name]);
   },
 
+  init: function () {
+    this.characters = {};
+  },
   preload: function () {
     this.game.load.image('background', 'images/background.png');
     this.game.load.image('ground', 'images/ground.png');
@@ -26,8 +29,6 @@ let play_state = {
     this.game.load.image('player', 'images/hero_stopped.png');
 
     this.game.load.json('level:1', 'data/level01.json');
-
-    this.characters = {};
   },
   create: function () {
     this.game.add.image(0, 0, 'background');
