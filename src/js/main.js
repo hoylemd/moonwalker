@@ -16,6 +16,11 @@ let play_state = {
 
   init: function () {
     this.characters = {};
+
+    this.keys = this.game.input.keyboard.addKeys({
+      left: Phaser.KeyCode.LEFT,
+      right: Phaser.KeyCode.RIGHT
+    });
   },
   preload: function () {
     this.game.load.image('background', 'images/background.png');
