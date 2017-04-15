@@ -44,8 +44,13 @@ let play_state = {
 
     this.keys = this.game.input.keyboard.addKeys({
       left: Phaser.KeyCode.LEFT,
-      right: Phaser.KeyCode.RIGHT
+      right: Phaser.KeyCode.RIGHT,
+      up: Phaser.KeyCode.UP
     });
+
+    this.keys.up.onDown.add(function() {
+      this.player.jump();
+    }, this);
   },
   preload: function () {
     this.game.load.image('background', 'images/background.png');

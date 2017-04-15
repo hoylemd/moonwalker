@@ -12,6 +12,17 @@ function Player(game, x, y) {
   this.move = function(direction) {
     this.body.velocity.x = direction *  this.speed;
   };
+
+  this.jump = function() {
+    const JUMP_SPEED = 600;
+    let can_jump = this.body.touching.down;
+
+    if (can_jump) {
+      this.body.velocity.y = -JUMP_SPEED;
+    }
+
+    return can_jump;
+  };
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
