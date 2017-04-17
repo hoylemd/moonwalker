@@ -4,7 +4,7 @@ let Spider = require('./spider');
 
 let preload = require('./preload');
 
-let play_state = {
+let play_state = {                                                              // TODO: make this also a class
   load_level: function(spec) {
     const GRAVITY = 1200;
     this.game.physics.arcade.gravity.y = GRAVITY;

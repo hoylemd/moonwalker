@@ -8,11 +8,11 @@ function preload() {
   this.game.load.image('grass:1x1', 'images/grass_1x1.png');
 
   this.game.load.image('invisible-wall', 'images/invisible_wall.png');
-  this.game.load.image('player', 'images/hero_stopped.png');
   this.game.load.image('icon:coin', 'images/coin_icon.png');
 
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
   this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
+  this.game.load.spritesheet('player', 'images/hero.png', 36, 42);
 
   this.game.load.image('font:numbers', 'images/numbers.png');
 

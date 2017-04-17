@@ -5,6 +5,11 @@ function Player(game, x, y) {
 
   this.anchor.set(0.5, 0.5);
 
+  this.animations.add('stop', [0]);
+  this.animations.add('run', [1, 2], 8, true);                                  // 8 fps, looped
+  this.animations.add('jump', [3]);
+  this.animations.add('fall', [4]);
+
   this.game.physics.enable(this);
   this.body.collideWorldBounds = true;
 
