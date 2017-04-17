@@ -90,11 +90,16 @@ let play_state = {
     physics.collide(this.spiders, this.platform_edges);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
+    physics.overlap(this.player, this.spiders, this.kill_player, null, this);
   },
 
   pickup_coin: function(player, coin) {
     coin.kill();
     this.sfx.coin.play();
+  },
+  kill_player: function(player, spider) {
+     this.sfx.stomp.play();
+     this.game.state.restart();
   },
 
   init: function () {
@@ -120,7 +125,8 @@ let play_state = {
 
     this.sfx = {
       jump: this.game.add.audio('sfx:jump'),
-      coin: this.game.add.audio('sfx:coin')
+      coin: this.game.add.audio('sfx:coin'),
+      stomp: this.game.add.audio('sfx:stomp'),
     };
 
     this.load_level(this.game.cache.getJSON('level:1'));
