@@ -7,6 +7,7 @@ function preload() {
   this.game.load.image('grass:2x1', 'images/grass_2x1.png');
   this.game.load.image('grass:1x1', 'images/grass_1x1.png');
 
+  this.game.load.image('invisible-wall', 'images/invisible_wall.png');
   this.game.load.image('player', 'images/hero_stopped.png');
 
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);

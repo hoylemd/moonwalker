@@ -10,6 +10,7 @@ let play_state = {
     this.game.physics.arcade.gravity.y = GRAVITY;
 
     this.platforms = this.game.add.group();
+    this.platform_edges = this.game.add.group();
     spec.platforms.forEach(this.spawn_platform, this);
 
     this.coins = this.game.add.group();
@@ -26,7 +27,26 @@ let play_state = {
     this.game.physics.enable(platform);
     platform.body.allowGravity = false;
     platform.body.immovable = true;
+
+    left_edge_spec = {x: platform.x, y: platform.y, side: 'left'};
+    platform.left_edge = this.spawn_platform_edge(left_edge_spec);
+    right_edge_spec = {x: platform.x + platform.width,
+                       y: platform.y,
+                       side: 'right'};
+    platform.right_edge = this.spawn_platform_edge(right_edge_spec);
+
     return platform;
+  },
+  spawn_platform_edge: function(spec) {
+    // spec: {x: <int>, y: <int>, side: 'left' || 'right}
+    let edge = this.platform_edges.create(spec.x, spec.y, 'invisible-wall');
+    edge.anchor.set(spec.side === 'left' ? 1 : 0, 1);
+
+    this.game.physics.enable(edge);
+    edge.body.immovable = true;
+    edge.body.allowGravity = false;
+
+    return edge;
   },
   spawn_player: function(spec) {
     // spec: {x: <int>, y: <int>}
