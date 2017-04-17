@@ -14,7 +14,7 @@ let play_state = {
     this.coins = this.game.add.group();
     spec.coins.forEach(this.spawn_coin, this);
 
-    this.player = this.spawn_character('player', spec.hero);
+    this.player = this.spawn_player('player', spec.hero);
   },
   spawn_platform: function(spec) {
     let platform = this.platforms.create(spec.x, spec.y, spec.image);
@@ -23,10 +23,10 @@ let play_state = {
     platform.body.immovable = true;
     return platform;
   },
-  spawn_character: function(name, spec) {
-    this.characters[name] = new Player(this.game, spec.x, spec.y);
-    this.game.add.existing(this.characters[name]);
-    return this.characters[name];
+  spawn_player: function(spec) {
+    let player = new Player(this.game, spec.x, spec.y);
+    this.game.add.existing(player);
+    return player;
   },
   spawn_coin: function(spec) {
     let coin = this.coins.create(spec.x, spec.y, 'coin');
