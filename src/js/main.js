@@ -36,10 +36,23 @@ let play_state = {                                                              
   },
   spawn_key: function(spec) {
     // spec:  {x: <int>, y: <int>}
+    const KEY_HOVER_MARGIN = 3;
+
+
     this.key = this.midground.create(spec.x, spec.y, 'key');
     this.key.anchor.set(0.5, 0.5);
     this.game.physics.enable(this.key);
     this.key.body.allowGravity = false;
+
+    this.key.y -= KEY_HOVER_MARGIN;
+    this.game.add.tween(this.key)
+                 .to({y: this.key.y + (2 * KEY_HOVER_MARGIN)},
+                     800,
+                     Phaser.Easing.Sinusoidal.InOut)
+                 .yoyo(true)
+                 .loop()
+                 .start();
+
     return this.key;
   },
   spawn_platform: function(spec) {
