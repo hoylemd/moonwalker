@@ -160,7 +160,9 @@ let play_state = {                                                              
       player.bounce();
     } else {
       // game over
-      this.game.state.restart();
+      this.game.state.restart(true,                                             // keep all assets
+                              false,                                            // don't keep entities
+                              {level: this.level});                             // spec to reload current level
     }
   },
 
