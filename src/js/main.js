@@ -166,7 +166,7 @@ let play_state = {                                                              
 };
 
 function main () {
-  let game = new Phaser.Game(960, 600, Phaser.AUTO, 'mikes_game');
+  let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
 
   game.state.add('play', play_state);
 
