@@ -31,6 +31,8 @@ let play_state = {
   spawn_coin: function(spec) {
     let coin = this.coins.create(spec.x, spec.y, 'coin');
     coin.anchor.set(0.5, 0.5);
+    coin.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looped
+    coin.animations.play('rotate');
     return coin;
   },
   handle_input: function() {
