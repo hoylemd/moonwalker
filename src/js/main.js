@@ -11,6 +11,7 @@ let play_state = {                                                              
 
     this.midground = this.game.add.group();
     this.spawn_door(spec.door);
+    this.spawn_key(spec.key);
 
     this.platforms = this.game.add.group();
     this.platform_edges = this.game.add.group();
@@ -32,6 +33,14 @@ let play_state = {                                                              
     this.game.physics.enable(this.door);
     this.door.body.allowGravity = false;
     return this.door;
+  },
+  spawn_key: function(spec) {
+    // spec:  {x: <int>, y: <int>}
+    this.key = this.midground.create(spec.x, spec.y, 'key');
+    this.key.anchor.set(0.5, 0.5);
+    this.game.physics.enable(this.key);
+    this.key.body.allowGravity = false;
+    return this.key;
   },
   spawn_platform: function(spec) {
     // spec: {x: <int>, y: <int>, image: <image asset name>}
