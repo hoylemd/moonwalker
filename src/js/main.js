@@ -199,22 +199,32 @@ let play_state = {                                                              
   },
   create_hud: function () {
     const FONT_CHARACTERS = '0123456789X';
+
+    this.hud = this.game.add.group();
+
+    this.key_icon = this.game.make.image(0, 19, 'icon:key');
+    this.key_icon.anchor.set(0, 0.5);
+    this.hud.add(this.key_icon);
+
+    let coin_icon = this.game.make.image(this.key_icon.width + 7,
+                                         0,
+                                         'icon:coin');
+    this.hud.add(coin_icon);
+
     this.coin_count = this.game.add.retroFont('font:numbers',
                                               20,                               // glyph width
                                               26,                               // glyph height
                                               FONT_CHARACTERS,                  // characters
                                               6);                               // glyphs per row
-
-    let coin_icon = this.game.make.image(0, 0, 'icon:coin');
     let score_indicator = this.game.make.image(coin_icon.x + coin_icon.width,
                                                coin_icon.height / 2,
                                                this.coin_count);
     score_indicator.anchor.set(0, 0.5);
-
-    this.hud = this.game.add.group();
-    this.hud.add(coin_icon);
     this.hud.add(score_indicator);
+
     this.hud.position.set(10, 10);
+
+    return this.hud;
   },
 };
 
