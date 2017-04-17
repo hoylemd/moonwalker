@@ -195,6 +195,9 @@ let play_state = {                                                              
   update: function () {
     this.handle_input();
     this.handle_collisions();
+
+    // update hud
+    this.key_icon.frame = this.player.has_key ? 1 : 0;
     this.coin_count.text = `x${this.player.coins}`;
   },
   create_hud: function () {
