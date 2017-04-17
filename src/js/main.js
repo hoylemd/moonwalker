@@ -100,7 +100,7 @@ let play_state = {
   player_spider_collide: function(player, spider) {
     this.sfx.stomp.play();
     if (player.body.velocity.y > 0) {
-      spider.kill();
+      spider.die();
       player.bounce();
     } else {
       // game over

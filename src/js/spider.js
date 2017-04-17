@@ -25,6 +25,13 @@ function Spider(game, x, y) {
       this.body.velocity.x = DIRECTION_RIGHT * Spider.SPEED;
     }
   };
+  this.die = function() {
+    this.body.enable = false;
+
+    this.animations.play('die').onComplete.addOnce(function () {
+        this.kill();
+    }, this);
+  };
 }
 
 Spider.SPEED = 100;
