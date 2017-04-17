@@ -21,6 +21,8 @@ function preload() {
   this.game.load.audio('sfx:jump', 'audio/jump.wav');
   this.game.load.audio('sfx:coin', 'audio/coin.wav');
   this.game.load.audio('sfx:stomp', 'audio/stomp.wav');
+  this.game.load.audio('sfx:key', 'audio/key.wav');
+  this.game.load.audio('sfx:door', 'audio/door.wav');
 
   this.game.load.json('level:1', 'data/level01.json');
 }

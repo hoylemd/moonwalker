@@ -154,6 +154,8 @@ let play_state = {                                                              
       jump: this.game.add.audio('sfx:jump'),
       coin: this.game.add.audio('sfx:coin'),
       stomp: this.game.add.audio('sfx:stomp'),
+      key: this.game.add.audio('sfx:key'),
+      door: this.game.add.audio('sfx:door'),
     };
 
     this.load_level(this.game.cache.getJSON('level:1'));
