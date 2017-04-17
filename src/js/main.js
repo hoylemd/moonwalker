@@ -90,16 +90,21 @@ let play_state = {
     physics.collide(this.spiders, this.platform_edges);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
-    physics.overlap(this.player, this.spiders, this.kill_player, null, this);
+    physics.overlap(this.player, this.spiders, this.player_spider_collide, null, this);
   },
 
   pickup_coin: function(player, coin) {
     coin.kill();
     this.sfx.coin.play();
   },
-  kill_player: function(player, spider) {
-     this.sfx.stomp.play();
-     this.game.state.restart();
+  player_spider_collide: function(player, spider) {
+    this.sfx.stomp.play();
+    if (player.body.velocity.y > 0) {
+      spider.kill();
+    } else {
+      // game over
+      this.game.state.restart();
+    }
   },
 
   init: function () {
