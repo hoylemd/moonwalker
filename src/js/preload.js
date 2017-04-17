@@ -9,6 +9,7 @@ function preload() {
 
   this.game.load.image('invisible-wall', 'images/invisible_wall.png');
   this.game.load.image('player', 'images/hero_stopped.png');
+  this.game.load.image('icon:coin', 'images/coin_icon.png');
 
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
   this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);

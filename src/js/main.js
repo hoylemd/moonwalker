@@ -136,11 +136,19 @@ let play_state = {
     };
 
     this.load_level(this.game.cache.getJSON('level:1'));
+    this.create_hud();
   },
   update: function () {
     this.handle_input();
     this.handle_collisions();
-  }
+  },
+  create_hud: function () {
+    let coin_icon = this.game.make.image(0, 0, 'icon:coin');
+
+    this.hud = this.game.add.group();
+    this.hud.add(coin_icon);
+    this.hud.position.set(10, 10);
+  },
 };
 
 function main () {
