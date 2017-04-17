@@ -111,7 +111,15 @@ let play_state = {                                                              
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
     physics.overlap(this.player, this.key, this.pickup_key, null, this);
-    physics.overlap(this.player, this.spiders, this.player_spider_collide, null, this);
+    physics.overlap(this.player, this.spiders,
+                    this.player_spider_collide, null, this);
+
+    function can_open_door(player, door) {
+      return player.has_key && player.body.touching_down;
+    }
+
+    physics.overlap(this.player, this.door,
+                    this.open_door, can_open_door, this);
   },
 
   pickup_coin: function(player, coin) {
@@ -123,6 +131,10 @@ let play_state = {                                                              
     key.kill();
     this.sfx.key.play();
     this.player.has_key = true;
+  },
+  open_door: function(player, door) {
+    this.sfx.door.play();
+    this.game.state.restart();
   },
   player_spider_collide: function(player, spider) {
     this.sfx.stomp.play();
