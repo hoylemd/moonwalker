@@ -19,6 +19,8 @@ function Player(game, x, y) {
 
   this.move = function(direction) {
     this.body.velocity.x = direction *  this.speed;
+
+    this.scale.x = this.body.velocity.x > 0 ? -1 : 1;
   };
 
   this.jump = function() {
