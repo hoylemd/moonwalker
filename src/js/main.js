@@ -4,9 +4,11 @@ let Spider = require('./spider');
 
 let preload = require('./preload');
 
+const GRAVITY = 1200;
+const LEVEL_COUNT = 2;
+
 let play_state = {                                                              // TODO: make this also a class
   load_level: function(spec) {
-    const GRAVITY = 1200;
     this.game.physics.arcade.gravity.y = GRAVITY;
 
     this.midground = this.game.add.group();
@@ -147,7 +149,9 @@ let play_state = {                                                              
   },
   open_door: function(player, door) {
     this.sfx.door.play();
-    this.game.state.restart();
+    this.game.state.restart(true,                                               // keep all assets
+                            false,                                              // don't keep entities
+                            {level: this.level + 1});                           // spec to load next level
   },
   player_spider_collide: function(player, spider) {
     this.sfx.stomp.play();
@@ -160,7 +164,8 @@ let play_state = {                                                              
     }
   },
 
-  init: function () {
+  init: function (spec) {
+    // spec: {level: <int>}
     this.game.renderer.renderSession.roundPixels = true;
 
     this.characters = {};
@@ -176,6 +181,8 @@ let play_state = {                                                              
         this.sfx.jump.play();
       }
     }, this);
+
+    this.level = (spec.level || 0) % LEVEL_COUNT;
   },
   preload: preload,
   create: function () {
@@ -189,7 +196,7 @@ let play_state = {                                                              
       door: this.game.add.audio('sfx:door'),
     };
 
-    this.load_level(this.game.cache.getJSON('level:1'));
+    this.load_level(this.game.cache.getJSON(`level:${this.level}`));
     this.create_hud();
   },
   update: function () {
@@ -236,7 +243,10 @@ function main () {
 
   game.state.add('play', play_state);
 
-  game.state.start('play');
+  game.state.start('play',                                                      // state name
+                   true,                                                        // keep all of the assets
+                   false,                                                       // don't keep any world objects
+                   {level: 0});                                                 // state spec
 }
 
 module.exports = main;
