@@ -1,6 +1,8 @@
 let Phaser = require('./vendor').phaser;
 let Player = require('./player');
 
+let preload = require('./preload');
+
 let play_state = {
   load_level: function(spec) {
     const GRAVITY = 1200;
@@ -54,21 +56,7 @@ let play_state = {
       }
     }, this);
   },
-  preload: function () {
-    this.game.load.image('background', 'images/background.png');
-    this.game.load.image('ground', 'images/ground.png');
-    this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-    this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-    this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-    this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-    this.game.load.image('grass:1x1', 'images/grass_1x1.png');
-
-    this.game.load.image('player', 'images/hero_stopped.png');
-
-    this.game.load.audio('sfx:jump', 'audio/jump.wav');
-
-    this.game.load.json('level:1', 'data/level01.json');
-  },
+  preload: preload,
   create: function () {
     this.game.add.image(0, 0, 'background');
 
