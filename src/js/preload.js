@@ -12,6 +12,7 @@ function preload() {
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
 
   this.game.load.audio('sfx:jump', 'audio/jump.wav');
+  this.game.load.audio('sfx:coin', 'audio/coin.wav');
 
   this.game.load.json('level:1', 'data/level01.json');
 }

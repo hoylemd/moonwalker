@@ -58,6 +58,7 @@ let play_state = {
 
   pickup_coin: function(player, coin) {
     coin.kill();
+    this.sfx.coin.play();
   },
 
   init: function () {
@@ -82,7 +83,8 @@ let play_state = {
     this.game.add.image(0, 0, 'background');
 
     this.sfx = {
-      jump: this.game.add.audio('sfx:jump')
+      jump: this.game.add.audio('sfx:jump'),
+      coin: this.game.add.audio('sfx:coin')
     };
 
     this.load_level(this.game.cache.getJSON('level:1'));
