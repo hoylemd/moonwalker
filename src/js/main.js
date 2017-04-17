@@ -9,6 +9,9 @@ let play_state = {                                                              
     const GRAVITY = 1200;
     this.game.physics.arcade.gravity.y = GRAVITY;
 
+    this.midground = this.game.add.group();
+    this.spawn_door(spec.door);
+
     this.platforms = this.game.add.group();
     this.platform_edges = this.game.add.group();
     spec.platforms.forEach(this.spawn_platform, this);
@@ -21,6 +24,14 @@ let play_state = {                                                              
 
     this.spiders = this.game.add.group();
     spec.spiders.forEach(this.spawn_spider, this);
+  },
+  spawn_door: function(spec) {
+    // spec:  {x: <int>, y: <int>}
+    this.door = this.midground.create(spec.x, spec.y, 'door');
+    this.door.anchor.set(0.5, 1);
+    this.game.physics.enable(this.door);
+    this.door.body.allowGravity = false;
+    return this.door;
   },
   spawn_platform: function(spec) {
     // spec: {x: <int>, y: <int>, image: <image asset name>}
