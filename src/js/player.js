@@ -16,6 +16,7 @@ function Player(game, x, y) {
   this.speed = 200;
 
   this.coins = 0;
+  this.has_key = false;
 
   this.move = function(direction) {
     this.body.velocity.x = direction *  this.speed;

@@ -110,6 +110,7 @@ let play_state = {                                                              
     physics.collide(this.spiders, this.platform_edges);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
+    physics.overlap(this.player, this.key, this.pickup_key, null, this);
     physics.overlap(this.player, this.spiders, this.player_spider_collide, null, this);
   },
 
@@ -117,6 +118,11 @@ let play_state = {                                                              
     coin.kill();
     this.sfx.coin.play();
     this.player.coins += 1;
+  },
+  pickup_key: function(player, key) {
+    key.kill();
+    this.sfx.key.play();
+    this.player.has_key = true;
   },
   player_spider_collide: function(player, spider) {
     this.sfx.stomp.play();
