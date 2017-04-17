@@ -36,6 +36,27 @@ function Player(game, x, y) {
     const BOUNCE_SPEED = 200;
     this.body.velocity.y = -1 * BOUNCE_SPEED;
   };
+
+  this.update = function() {
+    let current_animation_name = this.get_animation_name();
+    if (this.animations.name !== current_animation_name) {
+      this.animations.play(current_animation_name);
+    }
+  };
+
+  this.get_animation_name = function() {
+    let velocity = this.body.velocity;
+    let is_standing = this.body.touching.down;
+
+    if (velocity.y < 0) {                                                       // moving upwards
+      return 'jump';
+    } else if (velocity.y && !is_standing) {
+      return 'fall';
+    } else if (velocity.x !== 0 && is_standing) {
+      return 'run';
+    }
+    return 'stop';
+  };
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
