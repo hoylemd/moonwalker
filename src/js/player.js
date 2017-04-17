@@ -23,6 +23,11 @@ function Player(game, x, y) {
 
     return can_jump;
   };
+
+  this.bounce = function() {
+    const BOUNCE_SPEED = 200;
+    this.body.velocity.y = -1 * BOUNCE_SPEED;
+  };
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);

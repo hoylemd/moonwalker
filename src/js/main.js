@@ -101,6 +101,7 @@ let play_state = {
     this.sfx.stomp.play();
     if (player.body.velocity.y > 0) {
       spider.kill();
+      player.bounce();
     } else {
       // game over
       this.game.state.restart();
