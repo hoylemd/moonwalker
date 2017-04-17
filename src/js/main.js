@@ -1,5 +1,6 @@
 let Phaser = require('./vendor').phaser;
 let Player = require('./player');
+let Spider = require('./spider');
 
 let preload = require('./preload');
 
@@ -14,7 +15,10 @@ let play_state = {
     this.coins = this.game.add.group();
     spec.coins.forEach(this.spawn_coin, this);
 
-    this.player = this.spawn_player('player', spec.hero);
+    this.player = this.spawn_player(spec.hero);
+
+    this.spiders = this.game.add.group();
+    spec.spiders.forEach(this.spawn_spider, this);
   },
   spawn_platform: function(spec) {
     let platform = this.platforms.create(spec.x, spec.y, spec.image);
@@ -27,6 +31,11 @@ let play_state = {
     let player = new Player(this.game, spec.x, spec.y);
     this.game.add.existing(player);
     return player;
+  },
+  spawn_spider: function(spec) {
+    let spider = new Spider(this.game, spec.x, spec.y);
+    this.spiders.add(spider);
+    return spider;
   },
   spawn_coin: function(spec) {
     let coin = this.coins.create(spec.x, spec.y, 'coin');
@@ -52,6 +61,7 @@ let play_state = {
   handle_collisions: function() {
     let physics = this.game.physics.arcade;
     physics.collide(this.player, this.platforms);
+    physics.collide(this.spiders, this.platforms);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
   },

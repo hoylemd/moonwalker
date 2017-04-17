@@ -10,6 +10,7 @@ function preload() {
   this.game.load.image('player', 'images/hero_stopped.png');
 
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
+  this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
 
   this.game.load.audio('sfx:jump', 'audio/jump.wav');
   this.game.load.audio('sfx:coin', 'audio/coin.wav');
