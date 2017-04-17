@@ -21,6 +21,7 @@ let play_state = {
     spec.spiders.forEach(this.spawn_spider, this);
   },
   spawn_platform: function(spec) {
+    // spec: {x: <int>, y: <int>, image: <image asset name>}
     let platform = this.platforms.create(spec.x, spec.y, spec.image);
     this.game.physics.enable(platform);
     platform.body.allowGravity = false;
@@ -28,16 +29,19 @@ let play_state = {
     return platform;
   },
   spawn_player: function(spec) {
+    // spec: {x: <int>, y: <int>}
     let player = new Player(this.game, spec.x, spec.y);
     this.game.add.existing(player);
     return player;
   },
   spawn_spider: function(spec) {
+    // spec: {x: <int>, y: <int>}
     let spider = new Spider(this.game, spec.x, spec.y);
     this.spiders.add(spider);
     return spider;
   },
   spawn_coin: function(spec) {
+    // spec: {x: <int>, y: <int>}
     let coin = this.coins.create(spec.x, spec.y, 'coin');
     coin.anchor.set(0.5, 0.5);
     coin.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looped
