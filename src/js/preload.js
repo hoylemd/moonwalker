@@ -14,6 +14,8 @@ function preload() {
   this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
   this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
 
+  this.game.load.image('font:numbers', 'images/numbers.png');
+
   this.game.load.audio('sfx:jump', 'audio/jump.wav');
   this.game.load.audio('sfx:coin', 'audio/coin.wav');
   this.game.load.audio('sfx:stomp', 'audio/stomp.wav');

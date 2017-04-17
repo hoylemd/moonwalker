@@ -143,6 +143,13 @@ let play_state = {
     this.handle_collisions();
   },
   create_hud: function () {
+    const FONT_CHARACTERS = '0123456789x';
+    this.hud_font = this.game.add.retroFont('font:numbers',
+                                            20,               // glyph width
+                                            26,               // glyph height
+                                            FONT_CHARACTERS,  // characters
+                                            6);               // glyphs per row
+
     let coin_icon = this.game.make.image(0, 0, 'icon:coin');
 
     this.hud = this.game.add.group();
