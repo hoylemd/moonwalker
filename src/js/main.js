@@ -12,6 +12,7 @@ let play_state = {
     this.platforms = this.game.add.group();
     this.platform_edges = this.game.add.group();
     spec.platforms.forEach(this.spawn_platform, this);
+    this.platform_edges.visible = false;
 
     this.coins = this.game.add.group();
     spec.coins.forEach(this.spawn_coin, this);
@@ -86,6 +87,7 @@ let play_state = {
     let physics = this.game.physics.arcade;
     physics.collide(this.player, this.platforms);
     physics.collide(this.spiders, this.platforms);
+    physics.collide(this.spiders, this.platform_edges);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
   },

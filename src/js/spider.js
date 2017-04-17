@@ -1,5 +1,8 @@
 let Phaser = require('./vendor').phaser;
 
+DIRECTION_LEFT = -1;
+DIRECTION_RIGHT = 1;
+
 function Spider(game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'spider');
 
@@ -12,6 +15,16 @@ function Spider(game, x, y) {
   this.game.physics.enable(this);
   this.body.collideWorldBounds = true;
   this.body.velocity.x = Spider.SPEED;
+
+  this.update = function() {
+    if (this.body.touching.right || this.body.blocked.right) {
+      this.body.velocity.x = DIRECTION_LEFT * Spider.SPEED;
+    }
+
+    if (this.body.touching.left || this.body.blocked.left) {
+      this.body.velocity.x = DIRECTION_RIGHT * Spider.SPEED;
+    }
+  };
 }
 
 Spider.SPEED = 100;
