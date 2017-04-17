@@ -1,10 +1,10 @@
 let Phaser = require('./vendor').phaser;
-let play_state = require('./play_state');
+let LevelState = require('./play_state');
 
 function main () {
   let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
 
-  game.state.add('play', play_state);
+  game.state.add('play', new LevelState(game));
 
   game.state.start('play',                                                      // state name
                    true,                                                        // keep all of the assets

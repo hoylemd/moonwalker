@@ -1,13 +1,15 @@
-let preload = require('./preload');
 let Player = require('./player');
 let Spider = require('./spider');
 
+let preload = require('./preload');
 
-const GRAVITY = 1200;
-const LEVEL_COUNT = 2;
+function LevelState(game) {
+  const GRAVITY = 1200;
+  const LEVEL_COUNT = 2;
 
-let play_state = {                                                              // TODO: make this also a class
-  load_level: function(spec) {
+  this.game = game;
+
+  this.load_level = function(spec) {
     this.game.physics.arcade.gravity.y = GRAVITY;
 
     this.midground = this.game.add.group();
@@ -26,16 +28,16 @@ let play_state = {                                                              
 
     this.spiders = this.game.add.group();
     spec.spiders.forEach(this.spawn_spider, this);
-  },
-  spawn_door: function(spec) {
+  };
+  this.spawn_door = function(spec) {
     // spec:  {x: <int>, y: <int>}
     this.door = this.midground.create(spec.x, spec.y, 'door');
     this.door.anchor.set(0.5, 1);
     this.game.physics.enable(this.door);
     this.door.body.allowGravity = false;
     return this.door;
-  },
-  spawn_key: function(spec) {
+  };
+  this.spawn_key = function(spec) {
     // spec:  {x: <int>, y: <int>}
     const KEY_HOVER_MARGIN = 3;
 
@@ -55,8 +57,8 @@ let play_state = {                                                              
                  .start();
 
     return this.key;
-  },
-  spawn_platform: function(spec) {
+  };
+  this.spawn_platform = function(spec) {
     // spec: {x: <int>, y: <int>, image: <image asset name>}
     let platform = this.platforms.create(spec.x, spec.y, spec.image);
     this.game.physics.enable(platform);
@@ -71,8 +73,8 @@ let play_state = {                                                              
     platform.right_edge = this.spawn_platform_edge(right_edge_spec);
 
     return platform;
-  },
-  spawn_platform_edge: function(spec) {
+  };
+  this.spawn_platform_edge = function(spec) {
     // spec: {x: <int>, y: <int>, side: 'left' || 'right}
     let edge = this.platform_edges.create(spec.x, spec.y, 'invisible-wall');
     edge.anchor.set(spec.side === 'left' ? 1 : 0, 1);
@@ -82,20 +84,20 @@ let play_state = {                                                              
     edge.body.allowGravity = false;
 
     return edge;
-  },
-  spawn_player: function(spec) {
+  };
+  this.spawn_player = function(spec) {
     // spec: {x: <int>, y: <int>}
     let player = new Player(this.game, spec.x, spec.y);
     this.game.add.existing(player);
     return player;
-  },
-  spawn_spider: function(spec) {
+  };
+  this.spawn_spider = function(spec) {
     // spec: {x: <int>, y: <int>}
     let spider = new Spider(this.game, spec.x, spec.y);
     this.spiders.add(spider);
     return spider;
-  },
-  spawn_coin: function(spec) {
+  };
+  this.spawn_coin = function(spec) {
     // spec: {x: <int>, y: <int>}
     let coin = this.coins.create(spec.x, spec.y, 'coin');
     coin.anchor.set(0.5, 0.5);
@@ -104,9 +106,9 @@ let play_state = {                                                              
     this.game.physics.enable(coin);
     coin.body.allowGravity = false;
     return coin;
-  },
+  };
 
-  handle_input: function() {
+  this.handle_input = function() {
     let direction = 0;
     if (this.keys.left.isDown) {
       direction -= 1;
@@ -116,8 +118,8 @@ let play_state = {                                                              
     }
 
     this.player.move(direction);
-  },
-  handle_collisions: function() {
+  };
+  this.handle_collisions = function() {
     let physics = this.game.physics.arcade;
     physics.collide(this.player, this.platforms);
     physics.collide(this.spiders, this.platforms);
@@ -134,25 +136,25 @@ let play_state = {                                                              
 
     physics.overlap(this.player, this.door,
                     this.open_door, can_open_door, this);
-  },
+  };
 
-  pickup_coin: function(player, coin) {
+  this.pickup_coin = function(player, coin) {
     coin.kill();
     this.sfx.coin.play();
     this.player.coins += 1;
-  },
-  pickup_key: function(player, key) {
+  };
+  this.pickup_key = function(player, key) {
     key.kill();
     this.sfx.key.play();
     this.player.has_key = true;
-  },
-  open_door: function(player, door) {
+  };
+  this.open_door = function(player, door) {
     this.sfx.door.play();
     this.game.state.restart(true,                                               // keep all assets
                             false,                                              // don't keep entities
                             {level: this.level + 1});                           // spec to load next level
-  },
-  player_spider_collide: function(player, spider) {
+  };
+  this.player_spider_collide = function(player, spider) {
     this.sfx.stomp.play();
     if (player.body.velocity.y > 0) {
       spider.die();
@@ -163,9 +165,9 @@ let play_state = {                                                              
                               false,                                            // don't keep entities
                               {level: this.level});                             // spec to reload current level
     }
-  },
+  };
 
-  init: function (spec) {
+  this.init = function (spec) {
     // spec: {level: <int>}
     this.game.renderer.renderSession.roundPixels = true;
 
@@ -184,9 +186,9 @@ let play_state = {                                                              
     }, this);
 
     this.level = (spec.level || 0) % LEVEL_COUNT;
-  },
-  preload: preload,
-  create: function () {
+  };
+  this.preload = preload;
+  this.create = function () {
     this.game.add.image(0, 0, 'background');
 
     this.sfx = {
@@ -199,16 +201,16 @@ let play_state = {                                                              
 
     this.load_level(this.game.cache.getJSON(`level:${this.level}`));
     this.create_hud();
-  },
-  update: function () {
+  };
+  this.update = function () {
     this.handle_input();
     this.handle_collisions();
 
     // update hud
     this.key_icon.frame = this.player.has_key ? 1 : 0;
     this.coin_count.text = `x${this.player.coins}`;
-  },
-  create_hud: function () {
+  };
+  this.create_hud = function () {
     const FONT_CHARACTERS = '0123456789X';
 
     this.hud = this.game.add.group();
@@ -236,7 +238,7 @@ let play_state = {                                                              
     this.hud.position.set(10, 10);
 
     return this.hud;
-  },
-};
+  };
+}
 
-module.exports = play_state;
+module.exports = LevelState;
