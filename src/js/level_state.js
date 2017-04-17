@@ -6,9 +6,49 @@ let preload = require('./preload');
 function LevelState(game) {
   const GRAVITY = 1200;
   const LEVEL_COUNT = 2;
+  const KEY_HOVER_MARGIN = 3;
+  const FONT_CHARACTERS = '0123456789X';
 
   this.game = game;
 
+  // Initialization
+  this.init = function (spec) {
+    // spec: {level: <int>}
+    this.game.renderer.renderSession.roundPixels = true;
+
+    this.keys = this.game.input.keyboard.addKeys({
+      left: Phaser.KeyCode.LEFT,
+      right: Phaser.KeyCode.RIGHT,
+      up: Phaser.KeyCode.UP
+    });
+
+    this.keys.up.onDown.add(function() {
+      if (this.player.jump()) {
+        this.sfx.jump.play();
+      }
+    }, this);
+
+    this.level = (spec.level || 0) % LEVEL_COUNT;
+  };
+
+  // Load Assets
+  this.preload = preload;
+
+  // Create game world
+  this.create = function () {
+    this.game.add.image(0, 0, 'background');
+
+    this.sfx = {
+      jump: this.game.add.audio('sfx:jump'),
+      coin: this.game.add.audio('sfx:coin'),
+      stomp: this.game.add.audio('sfx:stomp'),
+      key: this.game.add.audio('sfx:key'),
+      door: this.game.add.audio('sfx:door'),
+    };
+
+    this.load_level(this.game.cache.getJSON(`level:${this.level}`));
+    this.create_hud();
+  };
   this.load_level = function(spec) {
     this.game.physics.arcade.gravity.y = GRAVITY;
 
@@ -39,8 +79,6 @@ function LevelState(game) {
   };
   this.spawn_key = function(spec) {
     // spec:  {x: <int>, y: <int>}
-    const KEY_HOVER_MARGIN = 3;
-
 
     this.key = this.midground.create(spec.x, spec.y, 'key');
     this.key.anchor.set(0.5, 0.5);
@@ -85,6 +123,16 @@ function LevelState(game) {
 
     return edge;
   };
+  this.spawn_coin = function(spec) {
+    // spec: {x: <int>, y: <int>}
+    let coin = this.coins.create(spec.x, spec.y, 'coin');
+    coin.anchor.set(0.5, 0.5);
+    coin.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looped
+    coin.animations.play('rotate');
+    this.game.physics.enable(coin);
+    coin.body.allowGravity = false;
+    return coin;
+  };
   this.spawn_player = function(spec) {
     // spec: {x: <int>, y: <int>}
     let player = new Player(this.game, spec.x, spec.y);
@@ -97,15 +145,43 @@ function LevelState(game) {
     this.spiders.add(spider);
     return spider;
   };
-  this.spawn_coin = function(spec) {
-    // spec: {x: <int>, y: <int>}
-    let coin = this.coins.create(spec.x, spec.y, 'coin');
-    coin.anchor.set(0.5, 0.5);
-    coin.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looped
-    coin.animations.play('rotate');
-    this.game.physics.enable(coin);
-    coin.body.allowGravity = false;
-    return coin;
+  this.create_hud = function () {
+
+    this.hud = this.game.add.group();
+
+    this.key_icon = this.game.make.image(0, 19, 'icon:key');
+    this.key_icon.anchor.set(0, 0.5);
+    this.hud.add(this.key_icon);
+
+    let coin_icon = this.game.make.image(this.key_icon.width + 7,
+                                         0,
+                                         'icon:coin');
+    this.hud.add(coin_icon);
+
+    this.coin_count = this.game.add.retroFont('font:numbers',
+                                              20,                               // glyph width
+                                              26,                               // glyph height
+                                              FONT_CHARACTERS,                  // characters
+                                              6);                               // glyphs per row
+    let score_indicator = this.game.make.image(coin_icon.x + coin_icon.width,
+                                               coin_icon.height / 2,
+                                               this.coin_count);
+    score_indicator.anchor.set(0, 0.5);
+    this.hud.add(score_indicator);
+
+    this.hud.position.set(10, 10);
+
+    return this.hud;
+  };
+
+  // Update game world
+  this.update = function () {
+    this.handle_input();
+    this.handle_collisions();
+
+    // update hud
+    this.key_icon.frame = this.player.has_key ? 1 : 0;
+    this.coin_count.text = `x${this.player.coins}`;
   };
 
   this.handle_input = function() {
@@ -148,12 +224,6 @@ function LevelState(game) {
     this.sfx.key.play();
     this.player.has_key = true;
   };
-  this.open_door = function(player, door) {
-    this.sfx.door.play();
-    this.game.state.restart(true,                                               // keep all assets
-                            false,                                              // don't keep entities
-                            {level: this.level + 1});                           // spec to load next level
-  };
   this.player_spider_collide = function(player, spider) {
     this.sfx.stomp.play();
     if (player.body.velocity.y > 0) {
@@ -166,78 +236,11 @@ function LevelState(game) {
                               {level: this.level});                             // spec to reload current level
     }
   };
-
-  this.init = function (spec) {
-    // spec: {level: <int>}
-    this.game.renderer.renderSession.roundPixels = true;
-
-    this.characters = {};
-
-    this.keys = this.game.input.keyboard.addKeys({
-      left: Phaser.KeyCode.LEFT,
-      right: Phaser.KeyCode.RIGHT,
-      up: Phaser.KeyCode.UP
-    });
-
-    this.keys.up.onDown.add(function() {
-      if (this.player.jump()) {
-        this.sfx.jump.play();
-      }
-    }, this);
-
-    this.level = (spec.level || 0) % LEVEL_COUNT;
-  };
-  this.preload = preload;
-  this.create = function () {
-    this.game.add.image(0, 0, 'background');
-
-    this.sfx = {
-      jump: this.game.add.audio('sfx:jump'),
-      coin: this.game.add.audio('sfx:coin'),
-      stomp: this.game.add.audio('sfx:stomp'),
-      key: this.game.add.audio('sfx:key'),
-      door: this.game.add.audio('sfx:door'),
-    };
-
-    this.load_level(this.game.cache.getJSON(`level:${this.level}`));
-    this.create_hud();
-  };
-  this.update = function () {
-    this.handle_input();
-    this.handle_collisions();
-
-    // update hud
-    this.key_icon.frame = this.player.has_key ? 1 : 0;
-    this.coin_count.text = `x${this.player.coins}`;
-  };
-  this.create_hud = function () {
-    const FONT_CHARACTERS = '0123456789X';
-
-    this.hud = this.game.add.group();
-
-    this.key_icon = this.game.make.image(0, 19, 'icon:key');
-    this.key_icon.anchor.set(0, 0.5);
-    this.hud.add(this.key_icon);
-
-    let coin_icon = this.game.make.image(this.key_icon.width + 7,
-                                         0,
-                                         'icon:coin');
-    this.hud.add(coin_icon);
-
-    this.coin_count = this.game.add.retroFont('font:numbers',
-                                              20,                               // glyph width
-                                              26,                               // glyph height
-                                              FONT_CHARACTERS,                  // characters
-                                              6);                               // glyphs per row
-    let score_indicator = this.game.make.image(coin_icon.x + coin_icon.width,
-                                               coin_icon.height / 2,
-                                               this.coin_count);
-    score_indicator.anchor.set(0, 0.5);
-    this.hud.add(score_indicator);
-
-    this.hud.position.set(10, 10);
-
-    return this.hud;
+  this.open_door = function(player, door) {
+    this.sfx.door.play();
+    this.game.state.restart(true,                                               // keep all assets
+                            false,                                              // don't keep entities
+                            {level: this.level + 1});                           // spec to load next level
   };
 }
 
