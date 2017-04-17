@@ -9,6 +9,9 @@ function Player(game, x, y) {
   this.body.collideWorldBounds = true;
 
   this.speed = 200;
+
+  this.coins = 0;
+
   this.move = function(direction) {
     this.body.velocity.x = direction *  this.speed;
   };

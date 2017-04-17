@@ -96,6 +96,7 @@ let play_state = {
   pickup_coin: function(player, coin) {
     coin.kill();
     this.sfx.coin.play();
+    this.player.coins += 1;
   },
   player_spider_collide: function(player, spider) {
     this.sfx.stomp.play();
