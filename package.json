@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify src/js/bundle.js -o static/js/bundle.js -v --debug",
-    "start": "cd static; python -m SimpleHTTPServer 8080"
+    "start": "cd static; python -m SimpleHTTPServer 8080",
+    "build": "browserify src/js/bundle.js -o static/js/bundle.js; cp -r static/* dist/"
   },
   "author": "",
   "license": "ISC"
