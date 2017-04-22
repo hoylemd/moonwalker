@@ -1,3 +1,7 @@
 .DS_Store
 node_modules
 static/js
+
+*.tar.gz
+scratch/
+dist
