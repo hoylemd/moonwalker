@@ -158,16 +158,28 @@ function LevelState(game) {
                                          'icon:coin');
     this.hud.add(coin_icon);
 
-    this.coin_count = this.game.add.retroFont('font:numbers',
-                                              20,                               // glyph width
-                                              26,                               // glyph height
-                                              FONT_CHARACTERS,                  // characters
-                                              6);                               // glyphs per row
-    let score_indicator = this.game.make.image(coin_icon.x + coin_icon.width,
-                                               coin_icon.height / 2,
-                                               this.coin_count);
-    score_indicator.anchor.set(0, 0.5);
-    this.hud.add(score_indicator);
+    let score_x = this.game.add.text(coin_icon.x + coin_icon.width + 8,
+                                     coin_icon.height / 2,
+                                     'x',
+                                      {font: 'origicide',
+                                       fill: '#666',
+                                       stroke: '#999',
+                                       strokeThickness: 4,
+                                       fontSize: 24});
+    score_x.anchor.set(0, 0.5);
+    this.hud.add(score_x);
+    window.score_x = score_x;
+
+    this.coin_count = this.game.add.text(score_x.x + 20,
+                                         coin_icon.height / 2,
+                                         '',
+                                         {font: 'origicide',
+                                          fill: '#666',
+                                          stroke: '#999',
+                                          strokeThickness: 6,
+                                          fontSize: coin_icon.height});
+    this.coin_count.anchor.set(0, 0.5);
+    this.hud.add(this.coin_count);
 
     this.hud.position.set(10, 10);
 
@@ -181,7 +193,7 @@ function LevelState(game) {
 
     // update hud
     this.key_icon.frame = this.player.has_key ? 1 : 0;
-    this.coin_count.text = `x${this.player.coins}`;
+    this.coin_count.text = `${this.player.coins}`;
   };
 
   this.handle_input = function() {
