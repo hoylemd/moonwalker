@@ -1,4 +1,7 @@
+let UIButton = require('./ui_button');
+
 function GameOverState(game) {
+  this.game = game;
 
   this.init = function (spec) {
     // spec: {score: <int>, win: <boolean>}
@@ -16,36 +19,13 @@ function GameOverState(game) {
     };
 
     this.ui = this.game.add.group();
-    button = game.add.button(game.world.centerX - 95,                           // x
-                             400,                                               // y
-                             'grey_ui',                                         // spritesheet name
-                             actionOnClick,                                     // click callback
-                             this,                                              // callback context
-                             'grey_button01.png',                               // over frame
-                             'grey_button03.png',                               // down frame
-                             'grey_button02.png',                               // up frame
-                             null,
-                             this.ui);
-    button.onInputDown.add(function () {
-      button.y += 4;
-    }, this);
-    button.onInputUp.add(function () {
-      button.y -= 4;
-    }, this);
-
-    button_text = this.game.add.text(button.width / 2,
-                                     button.height / 2,
-                                     'Restart',
-                                     {font: 'origicide',
-                                      fill: '#666',
-                                      stroke: '#999',
-                                      strokeThickness: 4,
-                                      fontSize: 32});
-    button_text.anchor.set(0.5, 0.5);
-    button.addChild(button_text);
-  };
-
-  this.update = function () {
+    button = new UIButton(this.game,
+                          this.game.world.centerX - 95,                           // x
+                          400,                                               // y
+                          'Restart',
+                          actionOnClick,                                     // click callback
+                          this);
+    this.ui.add(button);
 
   };
 }
