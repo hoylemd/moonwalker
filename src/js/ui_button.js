@@ -13,28 +13,6 @@ const TEXT_STYLE = {
 };
 
 const BACKLIGHT_COLOURS = {
-  'red': {
-    'over': {
-      'fill': '#844',
-      'stroke': '#877',
-    },
-    'out': {
-      'fill': '#766',
-      'stroke': '#999',
-    },
-    'down': {
-      'fill': '#C22',
-      'stroke': '#C77',
-    },
-  },
-  'green': {
-  },
-  'blue': {
-  },
-  'yellow': {
-  },
-  'white': {
-  },
   'none': {
     'over': {
       'fill': '#555',
@@ -52,6 +30,52 @@ const BACKLIGHT_COLOURS = {
       'fill': '#666',
       'stroke': '#999',
     }
+  },
+  'red': {
+    'over': {
+      'fill': '#844',
+      'stroke': '#877',
+    },
+    'out': {
+      'fill': '#766',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#C22',
+      'stroke': '#C77',
+    },
+  },
+  'green': {
+    'over': {
+      'fill': '#363',
+      'stroke': '#787',
+    },
+    'out': {
+      'fill': '#686',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#282',
+      'stroke': '#7C7',
+    },
+  },
+  'blue': {
+    'over': {
+      'fill': '#448',
+      'stroke': '#778',
+    },
+    'out': {
+      'fill': '#667',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#22C',
+      'stroke': '#77C',
+    },
+  },
+  'yellow': {
+  },
+  'white': {
   },
 };
 
@@ -73,7 +97,7 @@ function UIButton(game, x, y, label, callback, callback_context, backlight_colou
                      'grey_button03.png',
                      'grey_button02.png');
 
-  this.backlight = BACKLIGHT_COLOURS[backlight_colour];
+  this.backlight = BACKLIGHT_COLOURS[backlight_colour] || BACKLIGHT_COLOURS.none;
 
   style = Object.assign({}, TEXT_STYLE, this.backlight.out, style_overrides);
   this.text = this.game.add.text(this.width / 2,
@@ -82,7 +106,6 @@ function UIButton(game, x, y, label, callback, callback_context, backlight_colou
                                  style);
   this.text.anchor.set(0.5, 0.5);
   this.addChild(this.text);
-
 
   this.over = false;
   this.down = false;
