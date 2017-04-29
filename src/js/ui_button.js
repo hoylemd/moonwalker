@@ -1,16 +1,5 @@
 let Phaser = require('./vendor').phaser;
-
-const NORMAL_TEXT_FILL = '#666';
-const NORMAL_TEXT_STROKE = '#999';
-const OVER_TEXT_FILL = '#555';
-const OVER_TEXT_STROKE = '#888';
-const TEXT_STYLE = {
-  font: 'origicide',
-  fill: NORMAL_TEXT_FILL,
-  stroke: NORMAL_TEXT_STROKE,
-  strokeThickness: 4,
-  fontSize: 32
-};
+TEXT_STYLE = require('./text_styles').DEFAULT_TEXT_STYLE;
 
 const BACKLIGHT_COLOURS = {
   'none': {

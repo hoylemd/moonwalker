@@ -1,4 +1,5 @@
 let UIButton = require('./ui_button');
+let UILabel = require('./ui_label');
 
 function GameOverState(game) {
   this.game = game;
@@ -20,7 +21,14 @@ function GameOverState(game) {
 
     this.ui = this.game.add.group();
 
-    none_button = new UIButton(this.game,
+    let message = new UILabel(this.game,
+                              this.game.world.centerX,
+                              150,
+                              self.win ? 'You Won!' : 'You Lost!');
+    message.anchor.set(0.5, 0.5);
+    this.ui.add(message);
+
+    let none_button = new UIButton(this.game,
                                this.game.world.centerX - (190 + 20 + 95),
                                350,
                                'Grey',
