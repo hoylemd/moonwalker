@@ -41,7 +41,7 @@ const BACKLIGHT_COLOURS = {
       'stroke': '#999',
     },
     'down': {
-      'fill': '#C22',
+      'fill': '#D22',
       'stroke': '#C77',
     },
   },
@@ -55,7 +55,7 @@ const BACKLIGHT_COLOURS = {
       'stroke': '#999',
     },
     'down': {
-      'fill': '#282',
+      'fill': '#2D2',
       'stroke': '#7C7',
     },
   },
@@ -69,13 +69,37 @@ const BACKLIGHT_COLOURS = {
       'stroke': '#999',
     },
     'down': {
-      'fill': '#22C',
+      'fill': '#22D',
       'stroke': '#77C',
     },
   },
   'yellow': {
+    'over': {
+      'fill': '#993',
+      'stroke': '#887',
+    },
+    'out': {
+      'fill': '#774',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#DD2',
+      'stroke': '#CC7',
+    },
   },
-  'white': {
+  'orange': {
+    'over': {
+      'fill': '#853',
+      'stroke': '#976',
+    },
+    'out': {
+      'fill': '#976',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#FB2',
+      'stroke': '#EA7',
+    }
   },
 };
 

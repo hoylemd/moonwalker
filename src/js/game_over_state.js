@@ -55,6 +55,25 @@ function GameOverState(game) {
                                'blue');
     this.ui.add(blue_button);
 
+    yellow_button = new UIButton(this.game,
+                                 this.game.world.centerX - (0 + 0 + 95),
+                                 400,
+                                 'Yellow',
+                                 actionOnClick,
+                                 this,
+                                 'yellow');
+    this.ui.add(yellow_button);
+
+    orange_button = new UIButton(this.game,
+                                 this.game.world.centerX + (95 + 20),
+                                 400,
+                                 'Orange',
+                                 actionOnClick,
+                                 this,
+                                 'orange');
+    this.ui.add(orange_button);
+
+
   };
 }
 
