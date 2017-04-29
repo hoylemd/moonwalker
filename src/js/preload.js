@@ -17,6 +17,10 @@ function preload() {
   this.game.load.spritesheet('door', 'images/door.png', 42, 66);
   this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
+  this.game.load.atlasXML('grey_ui',
+                            'spritesheets/greySheet.png',
+                            'spritesheets/greySheet.xml');
+
   this.game.load.image('font:numbers', 'images/numbers.png');
 
   this.game.load.audio('sfx:jump', 'audio/jump.wav');
