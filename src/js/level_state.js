@@ -250,9 +250,11 @@ function LevelState(game) {
   };
   this.open_door = function(player, door) {
     this.sfx.door.play();
-    this.game.state.restart(true,                                               // keep all assets
-                            false,                                              // don't keep entities
-                            {level: this.level + 1});                           // spec to load next level
+    this.game.state.start('game_over',
+                          true,                                               // keep all assets
+                          false,                                              // don't keep entities
+                          {score: this.player.coins,
+                           win: true});                           // spec to load next level
   };
 }
 
