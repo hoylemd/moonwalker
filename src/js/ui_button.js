@@ -12,8 +12,55 @@ const TEXT_STYLE = {
   fontSize: 32
 };
 
-function UIButton(game, x, y, label, callback, callback_context, style_overrides) {
+const BACKLIGHT_COLOURS = {
+  'red': {
+    'over': {
+      'fill': '#844',
+      'stroke': '#877',
+    },
+    'out': {
+      'fill': '#766',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#C22',
+      'stroke': '#C77',
+    },
+  },
+  'green': {
+  },
+  'blue': {
+  },
+  'yellow': {
+  },
+  'white': {
+  },
+  'none': {
+    'over': {
+      'fill': '#555',
+      'stroke': '#888',
+    },
+    'out': {
+      'fill': '#666',
+      'stroke': '#999',
+    },
+    'down': {
+      'fill': '#444',
+      'stroke': '#777',
+    },
+    'up': {
+      'fill': '#666',
+      'stroke': '#999',
+    }
+  },
+};
+
+function UIButton(game, x, y, label, callback, callback_context, backlight_colour, style_overrides) {
+  backlight_colour = backlight_colour || 'none';
   style_overrides = style_overrides || {};
+
+  this.normal_y = y;
+  this.down_y = y + 4;
 
   Phaser.Button.call(this,
                      game,
@@ -26,7 +73,9 @@ function UIButton(game, x, y, label, callback, callback_context, style_overrides
                      'grey_button03.png',
                      'grey_button02.png');
 
-  style = Object.assign({}, TEXT_STYLE, style_overrides);
+  this.backlight = BACKLIGHT_COLOURS[backlight_colour];
+
+  style = Object.assign({}, TEXT_STYLE, this.backlight.out, style_overrides);
   this.text = this.game.add.text(this.width / 2,
                                  this.height / 2,
                                  label,
@@ -34,19 +83,41 @@ function UIButton(game, x, y, label, callback, callback_context, style_overrides
   this.text.anchor.set(0.5, 0.5);
   this.addChild(this.text);
 
+
+  this.over = false;
+  this.down = false;
+  this.update_state = function() {
+    let state = 'out';
+    if (this.over) {
+      if (this.down) {
+        state = 'down';
+      } else {
+        state = 'over';
+      }
+    }
+
+    let backlight = this.backlight[state];
+    this.text.fill = backlight.fill;
+    this.text.stroke = backlight.stroke;
+
+    this.y = this.down ? this.down_y : this.normal_y;
+  };
+
   this.onInputOver.add(function() {
-    this.text.fill = OVER_TEXT_FILL;
-    this.text.stroke = OVER_TEXT_STROKE;
-  }, this);
+    this.over = true;
+    this.update_state();
+   }, this);
   this.onInputOut.add(function() {
-    this.text.fill = NORMAL_TEXT_FILL;
-    this.text.stroke = NORMAL_TEXT_STROKE;
+    this.over = false;
+    this.update_state();
   }, this);
   this.onInputDown.add(function() {
-    this.y += 4;
+    this.down = true;
+    this.update_state();
   }, this);
   this.onInputUp.add(function() {
-    this.y -= 4;
+    this.down = false;
+    this.update_state();
   }, this);
 }
 

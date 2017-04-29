@@ -24,7 +24,8 @@ function GameOverState(game) {
                           400,                                               // y
                           'Restart',
                           actionOnClick,                                     // click callback
-                          this);
+                          this,
+                          'red');
     this.ui.add(button);
 
   };
