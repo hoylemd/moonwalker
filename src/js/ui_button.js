@@ -112,7 +112,7 @@ function UIButton(game, x, y, label, callback, callback_context, backlight_colou
 
   this.backlight = BACKLIGHT_COLOURS[backlight_colour] || BACKLIGHT_COLOURS.none;
 
-  style = Object.assign({}, TEXT_STYLE, this.backlight.out, style_overrides);
+  let style = Object.assign({}, TEXT_STYLE, this.backlight.out, style_overrides);
   this.text = this.game.add.text(this.width / 2,
                                  this.height / 2,
                                  label,

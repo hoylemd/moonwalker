@@ -14,6 +14,7 @@ function LevelState(game) {
   // Initialization
   this.init = function (spec) {
     // spec: {level: <int>}
+    spec = spec || {level: 0};
     this.game.renderer.renderSession.roundPixels = true;
 
     this.keys = this.game.input.keyboard.addKeys({

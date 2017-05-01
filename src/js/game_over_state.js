@@ -16,7 +16,7 @@ function GameOverState(game) {
     this.game.add.image(0, 0, 'background');
 
     let actionOnClick = function() {
-      console.log('clicked');
+      this.game.state.start('play', true, false);
     };
 
     this.ui = this.game.add.group();
