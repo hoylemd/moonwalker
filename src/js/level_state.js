@@ -13,8 +13,8 @@ function LevelState(game) {
 
   // Initialization
   this.init = function (spec) {
-    // spec: {level: <int>}
-    spec = spec || {level: 0};
+    // spec: {level: <int>, player: <Player>}
+    spec = Object.assign({level: 0, player: null}, spec);
     this.game.renderer.renderSession.roundPixels = true;
 
     this.keys = this.game.input.keyboard.addKeys({
@@ -30,6 +30,7 @@ function LevelState(game) {
     }, this);
 
     this.level = (spec.level || 0) % LEVEL_COUNT;
+    this.carried_player = spec.player;
   };
 
   // Load Assets
@@ -138,6 +139,9 @@ function LevelState(game) {
     // spec: {x: <int>, y: <int>}
     let player = new Player(this.game, spec.x, spec.y);
     this.game.add.existing(player);
+    if (this.carried_player) {
+      player.coins = this.carried_player.coins;
+    }
     return player;
   };
   this.spawn_spider = function(spec) {
@@ -246,16 +250,25 @@ function LevelState(game) {
       // game over
       this.game.state.restart(true,                                             // keep all assets
                               false,                                            // don't keep entities
-                              {level: this.level});                             // spec to reload current level
+                              {level: this.level,
+                               player: this.carried_player});                             // spec to reload current level
     }
   };
   this.open_door = function(player, door) {
     this.sfx.door.play();
-    this.game.state.start('game_over',
-                          true,                                               // keep all assets
-                          false,                                              // don't keep entities
-                          {score: this.player.coins,
-                           win: true});                           // spec to load next level
+    let next_level = this.level + 1;
+    if (next_level < LEVEL_COUNT) {
+      this.game.state.restart(true,                                             // keep all assets
+                              false,                                            // don't keep entities
+                              {level: next_level,
+                               player: this.player});
+    } else {
+      this.game.state.start('game_over',
+                            true,                                               // keep all assets
+                            false,                                              // don't keep entities
+                            {score: this.player.coins,
+                             win: true});                           // spec to load next level
+    }
   };
 }
 
