@@ -7,7 +7,7 @@ function LevelState(game) {
   const GRAVITY = 1200;
   const LEVEL_COUNT = 2;
   const KEY_HOVER_MARGIN = 3;
-  const FONT_CHARACTERS = '0123456789X';
+  const DEBUG_MODE = true;
 
   this.game = game;
 
@@ -141,6 +141,9 @@ function LevelState(game) {
     this.game.add.existing(player);
     if (this.carried_player) {
       player.coins = this.carried_player.coins;
+    }
+    if (DEBUG_MODE) {
+      window.player = player;
     }
     return player;
   };

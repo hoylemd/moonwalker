@@ -28,6 +28,13 @@ function GameOverState(game) {
     message.anchor.set(0.5, 0.5);
     this.ui.add(message);
 
+    let score_message = new UILabel(this.game,
+                                    this.game.world.centerX,
+                                    200,
+                                    `You got ${this.score} coins!`);
+    score_message.anchor.set(0.5, 0.5);
+    this.ui.add(score_message);
+
     let button = new UIButton(this.game,
                               this.game.world.centerX - 95,
                               350,
