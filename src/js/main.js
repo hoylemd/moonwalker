@@ -3,6 +3,7 @@ let LevelState = require('./level_state');
 let GameOverState = require('./game_over_state');
 
 function main () {
+  // actual size is 966 x 630
   let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
 
   game.state.add('play', new LevelState(game));

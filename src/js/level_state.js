@@ -52,6 +52,17 @@ function LevelState(game) {
     this.create_hud();
   };
   this.load_level = function(spec) {
+    // spec : level_spec
+    // leven_spec = {
+    //   platforms: [<platform_spec>],
+    //   decoration: [<decoration_spec>],
+    //   coins: [<coordinates>],
+    //   hero: <coordinates>,
+    //   spiders: [<coordinates>],
+    //   door: <coordinates>,
+    //   key: <coordinates>,
+    //   size: {width: <int>, height: <int>},
+    //              }
     this.game.physics.arcade.gravity.y = GRAVITY;
 
     this.midground = this.game.add.group();
