@@ -3,14 +3,14 @@
  <tileset firstgid="1" name="blue_grass_background_scaled" tilewidth="630" tileheight="630" tilecount="1" columns="1">
   <image source="../../static/images/blue_grass_background_scaled.png" width="630" height="630"/>
  </tileset>
- <tileset firstgid="2" name="spritesheet_ground_scaled" tilewidth="42" tileheight="42" tilecount="128" columns="8">
-  <image source="../../static/spritesheets/spritesheet_ground_scaled.png" width="336" height="672"/>
+ <tileset firstgid="2" name="ground" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/ground.png" width="336" height="672"/>
  </tileset>
- <tileset firstgid="130" name="spritesheet_tiles_scaled" tilewidth="42" tileheight="42" tilecount="128" columns="8">
-  <image source="../../static/spritesheets/spritesheet_tiles_scaled.png" width="336" height="672"/>
+ <tileset firstgid="130" name="objects" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/objects.png" width="336" height="672"/>
  </tileset>
- <tileset firstgid="258" name="spritesheet_items_scaled" tilewidth="42" tileheight="42" tilecount="32" columns="8">
-  <image source="../../static/spritesheets/spritesheet_items_scaled.png" width="336" height="168"/>
+ <tileset firstgid="258" name="items" tilewidth="42" tileheight="42" tilecount="32" columns="8">
+  <image source="../../static/spritesheets/items.png" width="336" height="168"/>
  </tileset>
  <layer name="background" width="23" height="15">
   <data encoding="csv">
