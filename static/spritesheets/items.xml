@@ -1,0 +1,26 @@
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture height="42" name="coinBronze.png" width="42" x="126" y="0" />
+	<SubTexture height="42" name="coinGold.png" width="42" x="210" y="126" />
+	<SubTexture height="42" name="coinSilver.png" width="42" x="84" y="84" />
+	<SubTexture height="42" name="flagBlue1.png" width="42" x="84" y="0" />
+	<SubTexture height="42" name="flagBlue2.png" width="42" x="42" y="126" />
+	<SubTexture height="42" name="flagBlue_down.png" width="42" x="84" y="42" />
+	<SubTexture height="42" name="flagGreen1.png" width="42" x="42" y="42" />
+	<SubTexture height="42" name="flagGreen2.png" width="42" x="42" y="0" />
+	<SubTexture height="42" name="flagGreen_down.png" width="42" x="42" y="84" />
+	<SubTexture height="42" name="flagRed1.png" width="42" x="0" y="84" />
+	<SubTexture height="42" name="flagRed2.png" width="42" x="0" y="42" />
+	<SubTexture height="42" name="flagRed_down.png" width="42" x="0" y="126" />
+	<SubTexture height="42" name="flagYellow1.png" width="42" x="84" y="126" />
+	<SubTexture height="42" name="flagYellow2.png" width="42" x="210" y="84" />
+	<SubTexture height="42" name="flagYellow_down.png" width="42" x="0" y="0" />
+	<SubTexture height="42" name="gemBlue.png" width="42" x="210" y="42" />
+	<SubTexture height="42" name="gemGreen.png" width="42" x="210" y="0" />
+	<SubTexture height="42" name="gemRed.png" width="42" x="168" y="126" />
+	<SubTexture height="42" name="gemYellow.png" width="42" x="168" y="84" />
+	<SubTexture height="42" name="keyBlue.png" width="42" x="168" y="42" />
+	<SubTexture height="42" name="keyGreen.png" width="42" x="168" y="0" />
+	<SubTexture height="42" name="keyRed.png" width="42" x="126" y="126" />
+	<SubTexture height="42" name="keyYellow.png" width="42" x="126" y="84" />
+	<SubTexture height="42" name="star.png" width="42" x="126" y="42" />
+</TextureAtlas>

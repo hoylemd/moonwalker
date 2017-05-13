@@ -29,8 +29,7 @@ function preload() {
   this.game.load.audio('sfx:key', 'audio/key.wav');
   this.game.load.audio('sfx:door', 'audio/door.wav');
 
-  this.game.load.json('level:0', 'data/level00.json');
-  this.game.load.json('level:1', 'data/level01.json');
+  this.game.load.json('level:0', 'data/levels/level00.json');
 }
 
 module.exports = preload;
