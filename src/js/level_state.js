@@ -77,16 +77,15 @@ function LevelState(game) {
       objects[type].push(obj);
     }, this);
 
-    this.spawn_door(objects.door[0]);
-    // this.spawn_door(spec.door);
-    // this.spawn_key(spec.key);
+    objects.door.forEach(this.spawn_door, this);
+    objects.key.forEach(this.spawn_key, this);
 
     // this.platform_edges = this.game.add.group();
     // spec.platforms.forEach(this.spawn_platform, this);
     // this.platform_edges.visible = false;
 
-    // this.coins = this.game.add.group();
-    // spec.coins.forEach(this.spawn_coin, this);
+    this.coins = this.game.add.group();
+    objects.coin.forEach(this.spawn_coin, this);
 
     this.player = this.spawn_player({x: 42,y: 462});
 
@@ -98,7 +97,7 @@ function LevelState(game) {
   this.spawn_door = function(spec) {
     // spec:  {x: <int>, y: <int>}
     this.door = this.midground.create(spec.x, spec.y, 'door');
-    this.door.anchor.set(0.5, 1);
+    this.door.anchor.set(0, 1);
     this.game.physics.enable(this.door);
     this.door.body.allowGravity = false;
     return this.door;
@@ -245,8 +244,8 @@ function LevelState(game) {
     // physics.collide(this.spiders, this.terrain_layer);
     // physics.collide(this.spiders, this.platform_edges);
 
-    // physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
-    // physics.overlap(this.player, this.key, this.pickup_key, null, this);
+    physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
+    physics.overlap(this.player, this.key, this.pickup_key, null, this);
     // physics.overlap(this.player, this.spiders,
     //                 this.player_spider_collide, null, this);
 

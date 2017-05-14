@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="24">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="29">
  <tileset firstgid="1" name="background" tilewidth="630" tileheight="630" tilecount="1" columns="1">
   <tileoffset x="0" y="588"/>
   <image source="../../static/images/blue_grass_background_scaled.png" width="630" height="630"/>
@@ -9,8 +9,14 @@
  </tileset>
  <tileset firstgid="130" name="objects" tilewidth="42" tileheight="42" tilecount="128" columns="8">
   <image source="../../static/spritesheets/objects.png" width="336" height="672"/>
+  <tile id="91">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="258" name="items" tilewidth="42" tileheight="42" tilecount="32" columns="8">
+  <tileoffset x="-21" y="21"/>
   <image source="../../static/spritesheets/items.png" width="336" height="168"/>
  </tileset>
  <layer name="background" width="23" height="15">
@@ -52,17 +58,17 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="3" type="door" gid="221" x="211" y="545" width="42" height="42"/>
-  <object id="4" gid="213" x="211" y="503" width="42" height="42"/>
-  <object id="7" type="coin" gid="287" x="127" y="546" width="42" height="42"/>
-  <object id="14" type="key" gid="285" x="504" y="336" width="42" height="42"/>
-  <object id="15" type="coin" gid="287" x="168" y="546" width="42" height="42"/>
-  <object id="16" type="coin" gid="287" x="315" y="504" width="42" height="42"/>
-  <object id="17" type="coin" gid="287" x="337" y="441" width="42" height="42"/>
-  <object id="18" type="coin" gid="287" x="379" y="399" width="42" height="42"/>
-  <object id="19" type="coin" gid="287" x="798" y="546" width="42" height="42"/>
-  <object id="20" type="coin" gid="287" x="840" y="546" width="42" height="42"/>
-  <object id="21" type="coin" gid="287" x="882" y="546" width="42" height="42"/>
+  <object id="3" type="door" gid="221" x="210" y="546" width="42" height="42"/>
+  <object id="4" gid="213" x="210" y="504" width="42" height="42"/>
+  <object id="7" type="coin" gid="287" x="147" y="525" width="42" height="42"/>
+  <object id="14" type="key" gid="285" x="504" y="293" width="42" height="42"/>
+  <object id="15" type="coin" gid="287" x="190" y="525" width="42" height="42"/>
+  <object id="16" type="coin" gid="287" x="315" y="503" width="42" height="42"/>
+  <object id="17" type="coin" gid="287" x="337" y="440" width="42" height="42"/>
+  <object id="18" type="coin" gid="287" x="379" y="398" width="42" height="42"/>
+  <object id="19" type="coin" gid="287" x="819" y="524" width="42" height="42"/>
+  <object id="20" type="coin" gid="287" x="861" y="524" width="42" height="42"/>
+  <object id="21" type="coin" gid="287" x="903" y="524" width="42" height="42"/>
   <object id="22" type="platform_edge" x="399" y="378" width="21" height="63"/>
   <object id="23" type="platform_edge" x="588" y="378" width="21" height="63"/>
  </objectgroup>
