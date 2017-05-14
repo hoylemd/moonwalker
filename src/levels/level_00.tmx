@@ -51,7 +51,7 @@
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 </data>
  </layer>
- <objectgroup name="Object Layer 1">
+ <objectgroup name="objects">
   <object id="3" type="door" gid="221" x="211" y="545" width="42" height="42"/>
   <object id="4" gid="213" x="211" y="503" width="42" height="42"/>
   <object id="7" type="coin" gid="287" x="127" y="546" width="42" height="42"/>

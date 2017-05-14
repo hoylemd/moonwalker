@@ -65,6 +65,19 @@ function LevelState(game) {
     this.game.physics.arcade.gravity.y = GRAVITY;
 
     this.midground = this.game.add.group();
+
+    let objects = {};
+    this.map.objects.objects.forEach(function (obj) {
+      let type = obj.type;
+
+      if (!type) return false;
+
+      objects[type] = objects[type] || [];
+
+      objects[type].push(obj);
+    }, this);
+
+    this.spawn_door(objects.door[0]);
     // this.spawn_door(spec.door);
     // this.spawn_key(spec.key);
 
@@ -229,7 +242,7 @@ function LevelState(game) {
   this.handle_collisions = function() {
     let physics = this.game.physics.arcade;
     physics.collide(this.player, this.terrain_layer);
-    // physics.collide(this.spiders, this.platforms);
+    // physics.collide(this.spiders, this.terrain_layer);
     // physics.collide(this.spiders, this.platform_edges);
 
     // physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
