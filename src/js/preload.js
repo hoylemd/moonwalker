@@ -1,12 +1,9 @@
+let Phaser = require('./vendor').phaser;
+
 function preload() {
-  this.game.load.image('background', 'images/background.png');
-  this.game.load.image('ground', 'images/ground.png');
-  this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-  this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-  this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-  this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-  this.game.load.image('grass:1x1', 'images/grass_1x1.png');
   this.game.load.image('key', 'images/key.png');
+  this.game.load.image('tiles:ground', 'spritesheets/ground.png');
+  this.game.load.image('tiles:background', 'images/blue_grass_background_scaled.png');
 
   this.game.load.image('invisible-wall', 'images/invisible_wall.png');
   this.game.load.image('icon:coin', 'images/coin_icon.png');
@@ -18,8 +15,8 @@ function preload() {
   this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
 
   this.game.load.atlasXML('grey_ui',
-                            'spritesheets/greySheet.png',
-                            'spritesheets/greySheet.xml');
+                          'spritesheets/greySheet.png',
+                          'spritesheets/greySheet.xml');
 
   this.game.load.image('font:numbers', 'images/numbers.png');
 
@@ -29,7 +26,10 @@ function preload() {
   this.game.load.audio('sfx:key', 'audio/key.wav');
   this.game.load.audio('sfx:door', 'audio/door.wav');
 
-  this.game.load.json('level:0', 'data/levels/level00.json');
+  this.game.load.tilemap('level:0',
+                         'data/levels/level_00.json',
+                         null,
+                         Phaser.Tilemap.TILED_JSON);
 }
 
 module.exports = preload;
