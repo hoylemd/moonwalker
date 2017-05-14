@@ -13,7 +13,8 @@ function GameOverState(game) {
   };
 
   this.create = function () {
-    this.game.add.image(0, 0, 'background');
+    this.game.add.image(0, 0, 'tiles:background');
+    this.game.add.image(630, 0, 'tiles:background');
 
     let actionOnClick = function() {
       this.game.state.start('play', true, false);
