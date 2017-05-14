@@ -30,6 +30,11 @@ function preload() {
                          'data/levels/level_00.json',
                          null,
                          Phaser.Tilemap.TILED_JSON);
+
+  this.game.load.tilemap('level:1',
+                         'data/levels/level_01.json',
+                         null,
+                         Phaser.Tilemap.TILED_JSON);
 }
 
 module.exports = preload;

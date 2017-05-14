@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="64">
+ <tileset firstgid="1" name="background" tilewidth="630" tileheight="630" tilecount="1" columns="1">
+  <tileoffset x="0" y="588"/>
+  <image source="../../static/images/blue_grass_background_scaled.png" width="630" height="630"/>
+ </tileset>
+ <tileset firstgid="2" name="ground" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/ground.png" width="336" height="672"/>
+ </tileset>
+ <tileset firstgid="130" name="objects" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/objects.png" width="336" height="672"/>
+  <tile id="91">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="258" name="items" tilewidth="42" tileheight="42" tilecount="32" columns="8">
+  <tileoffset x="-21" y="21"/>
+  <image source="../../static/spritesheets/items.png" width="336" height="168"/>
+ </tileset>
+ <layer name="background" width="23" height="15">
+  <data encoding="csv">
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="terrain" width="23" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,2,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,18,10,10,10,10,2,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,18,10,10,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,18,2,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,10,10,10,10,10,10,
+10,10,10,10,10,10,10,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,
+10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
+</data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="3" type="door" gid="221" x="168" y="546" width="42" height="42"/>
+  <object id="4" gid="213" x="168" y="504" width="42" height="42"/>
+  <object id="14" type="key" gid="285" x="903" y="105" width="42" height="42"/>
+  <object id="23" type="platform_edge" x="335" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="29" type="coin" gid="287" x="231" y="525" width="42" height="42"/>
+  <object id="30" type="coin" gid="287" x="273" y="525" width="42" height="42"/>
+  <object id="31" type="coin" gid="287" x="315" y="525" width="42" height="42"/>
+  <object id="32" type="coin" gid="287" x="357" y="525" width="42" height="42"/>
+  <object id="33" type="coin" gid="287" x="945" y="525" width="42" height="42"/>
+  <object id="34" type="coin" gid="287" x="861" y="525" width="42" height="42"/>
+  <object id="35" type="coin" gid="287" x="903" y="525" width="42" height="42"/>
+  <object id="36" type="coin" gid="287" x="819" y="525" width="42" height="42"/>
+  <object id="37" type="coin" gid="287" x="945" y="357" width="42" height="42"/>
+  <object id="38" type="coin" gid="287" x="861" y="357" width="42" height="42"/>
+  <object id="39" type="coin" gid="287" x="903" y="357" width="42" height="42"/>
+  <object id="40" type="coin" gid="287" x="819" y="357" width="42" height="42"/>
+  <object id="41" type="coin" gid="287" x="777" y="357" width="42" height="42"/>
+  <object id="42" type="coin" gid="287" x="231" y="231" width="42" height="42"/>
+  <object id="43" type="coin" gid="287" x="189" y="231" width="42" height="42"/>
+  <object id="44" type="coin" gid="287" x="861" y="63" width="42" height="42"/>
+  <object id="45" type="coin" gid="287" x="819" y="63" width="42" height="42"/>
+  <object id="46" type="coin" gid="287" x="357" y="525" width="42" height="42"/>
+  <object id="47" type="coin" gid="287" x="231" y="525" width="42" height="42"/>
+  <object id="48" type="coin" gid="287" x="567" y="147" width="42" height="42"/>
+  <object id="49" type="coin" gid="287" x="525" y="147" width="42" height="42"/>
+  <object id="50" type="coin" gid="287" x="651" y="147" width="42" height="42"/>
+  <object id="51" type="coin" gid="287" x="609" y="147" width="42" height="42"/>
+  <object id="52" type="coin" gid="287" x="337" y="357" width="42" height="42"/>
+  <object id="53" type="coin" gid="287" x="357" y="315" width="42" height="42"/>
+  <object id="54" type="coin" gid="287" x="399" y="295" width="42" height="42"/>
+  <object id="55" type="platform_edge" x="293" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="56" type="platform_edge" x="713" y="126" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="57" type="platform_edge" x="881" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="58" type="platform_edge" x="503" y="294" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="59" type="platform_edge" x="398" y="294" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="60" type="platform_edge" x="104" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="61" type="platform_edge" x="440" y="126" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="62" type="platform_edge" x="776" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="63" type="platform_edge" x="650" y="336" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
