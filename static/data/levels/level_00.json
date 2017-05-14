@@ -163,6 +163,14 @@
                  "height":63,
                  "id":22,
                  "name":"",
+                 "properties":
+                    {
+                     "side":"left"
+                    },
+                 "propertytypes":
+                    {
+                     "side":"string"
+                    },
                  "rotation":0,
                  "type":"platform_edge",
                  "visible":true,
@@ -174,6 +182,14 @@
                  "height":63,
                  "id":23,
                  "name":"",
+                 "properties":
+                    {
+                     "side":"right"
+                    },
+                 "propertytypes":
+                    {
+                     "side":"string"
+                    },
                  "rotation":0,
                  "type":"platform_edge",
                  "visible":true,

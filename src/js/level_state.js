@@ -80,9 +80,9 @@ function LevelState(game) {
     objects.door.forEach(this.spawn_door, this);
     objects.key.forEach(this.spawn_key, this);
 
-    // this.platform_edges = this.game.add.group();
-    // spec.platforms.forEach(this.spawn_platform, this);
-    // this.platform_edges.visible = false;
+    this.platform_edges = this.game.add.group();
+    objects.platform_edge.forEach(this.spawn_platform_edge, this);
+    this.platform_edges.visible = false;
 
     this.coins = this.game.add.group();
     objects.coin.forEach(this.spawn_coin, this);
@@ -121,26 +121,12 @@ function LevelState(game) {
 
     return this.key;
   };
-  this.spawn_platform = function(spec) {
-    // spec: {x: <int>, y: <int>, image: <image asset name>}
-    let platform = this.platforms.create(spec.x, spec.y, spec.image);
-    this.game.physics.enable(platform);
-    platform.body.allowGravity = false;
-    platform.body.immovable = true;
-
-    left_edge_spec = {x: platform.x, y: platform.y, side: 'left'};
-    platform.left_edge = this.spawn_platform_edge(left_edge_spec);
-    right_edge_spec = {x: platform.x + platform.width,
-                       y: platform.y,
-                       side: 'right'};
-    platform.right_edge = this.spawn_platform_edge(right_edge_spec);
-
-    return platform;
-  };
   this.spawn_platform_edge = function(spec) {
-    // spec: {x: <int>, y: <int>, side: 'left' || 'right}
+    // spec: {x: <int>, y: <int>, properties: {side: <'left' or 'right'>}}
     let edge = this.platform_edges.create(spec.x, spec.y, 'invisible-wall');
-    edge.anchor.set(spec.side === 'left' ? 1 : 0, 1);
+    edge.width = spec.width;
+    edge.height = spec.height;
+    edge.side = spec.properties.side;
 
     this.game.physics.enable(edge);
     edge.body.immovable = true;

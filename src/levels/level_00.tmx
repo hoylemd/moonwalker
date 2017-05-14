@@ -69,7 +69,15 @@
   <object id="19" type="coin" gid="287" x="819" y="524" width="42" height="42"/>
   <object id="20" type="coin" gid="287" x="861" y="524" width="42" height="42"/>
   <object id="21" type="coin" gid="287" x="903" y="524" width="42" height="42"/>
-  <object id="22" type="platform_edge" x="399" y="378" width="21" height="63"/>
-  <object id="23" type="platform_edge" x="588" y="378" width="21" height="63"/>
+  <object id="22" type="platform_edge" x="399" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="23" type="platform_edge" x="588" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
