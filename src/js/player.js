@@ -49,7 +49,7 @@ function Player(game, x, y) {
 
   this.get_animation_name = function() {
     let velocity = this.body.velocity;
-    let is_standing = this.body.touching.down;
+    let is_standing = this.body.onFloor();
 
     if (velocity.y < 0) {                                                       // moving upwards
       return 'jump';

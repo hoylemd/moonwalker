@@ -238,7 +238,7 @@ function LevelState(game) {
     //                 this.player_spider_collide, null, this);
 
     function can_open_door(player, door) {
-      return player.has_key && player.body.touching_down;
+      return player.has_key && player.body.onFloor();
     }
 
     physics.overlap(this.player, this.door,
