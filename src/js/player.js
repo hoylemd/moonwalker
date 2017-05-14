@@ -26,7 +26,7 @@ function Player(game, x, y) {
 
   this.jump = function() {
     const JUMP_SPEED = 600;
-    let can_jump = this.body.touching.down;
+    let can_jump = this.body.onFloor();
 
     if (can_jump) {
       this.body.velocity.y = -JUMP_SPEED;
