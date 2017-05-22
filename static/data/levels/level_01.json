@@ -571,11 +571,11 @@
                  "id":64,
                  "name":"",
                  "rotation":0,
-                 "type":"player_start",
+                 "type":"player",
                  "visible":true,
                  "width":31,
-                 "x":42,
-                 "y":546
+                 "x":57,
+                 "y":525
                 }, 
                 {
                  "gid":297,
@@ -586,8 +586,8 @@
                  "type":"spider",
                  "visible":true,
                  "width":42,
-                 "x":42,
-                 "y":420
+                 "x":63,
+                 "y":405
                 }, 
                 {
                  "gid":297,
@@ -598,8 +598,8 @@
                  "type":"spider",
                  "visible":true,
                  "width":42,
-                 "x":462,
-                 "y":168
+                 "x":483,
+                 "y":153
                 }, 
                 {
                  "gid":297,
@@ -610,8 +610,8 @@
                  "type":"spider",
                  "visible":true,
                  "width":42,
-                 "x":672,
-                 "y":378
+                 "x":693,
+                 "y":363
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -712,6 +712,11 @@
          "spacing":0,
          "tilecount":7,
          "tileheight":42,
+         "tileoffset":
+            {
+             "x":-15,
+             "y":21
+            },
          "tilewidth":31
         }, 
         {
@@ -725,6 +730,11 @@
          "spacing":0,
          "tilecount":5,
          "tileheight":32,
+         "tileoffset":
+            {
+             "x":-21,
+             "y":15
+            },
          "tilewidth":42
         }],
  "tilewidth":42,

@@ -87,12 +87,14 @@ function LevelState(game) {
     this.coins = this.game.add.group();
     objects.coin.forEach(this.spawn_coin, this);
 
-    this.player = this.spawn_player({x: 42,y: 462});
+    this.player = this.spawn_player(objects.player[0]);
 
     this.game.camera.follow(this.player);
 
-    // this.spiders = this.game.add.group();
-    // spec.spiders.forEach(this.spawn_spider, this);
+    this.spiders = this.game.add.group();
+    if (objects.spider) {
+      objects.spider.forEach(this.spawn_spider, this);
+    }
   };
   this.spawn_door = function(spec) {
     // spec:  {x: <int>, y: <int>}
@@ -227,13 +229,13 @@ function LevelState(game) {
   this.handle_collisions = function() {
     let physics = this.game.physics.arcade;
     physics.collide(this.player, this.terrain_layer);
-    // physics.collide(this.spiders, this.terrain_layer);
-    // physics.collide(this.spiders, this.platform_edges);
+    physics.collide(this.spiders, this.terrain_layer);
+    physics.collide(this.spiders, this.platform_edges);
 
     physics.overlap(this.player, this.coins, this.pickup_coin, null, this);
     physics.overlap(this.player, this.key, this.pickup_key, null, this);
-    // physics.overlap(this.player, this.spiders,
-    //                 this.player_spider_collide, null, this);
+    physics.overlap(this.player, this.spiders,
+                    this.player_spider_collide, null, this);
 
     function can_open_door(player, door) {
       return player.has_key && player.body.onFloor();

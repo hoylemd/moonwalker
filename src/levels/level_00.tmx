@@ -20,6 +20,7 @@
   <image source="../../static/spritesheets/items.png" width="336" height="168"/>
  </tileset>
  <tileset firstgid="290" name="player" tilewidth="31" tileheight="42" tilecount="7" columns="7">
+  <tileoffset x="-15" y="21"/>
   <image source="../../static/spritesheets/player.png" width="217" height="42"/>
  </tileset>
  <layer name="background" width="23" height="15">
@@ -82,6 +83,6 @@
     <property name="side" value="right"/>
    </properties>
   </object>
-  <object id="29" type="player_start" gid="290" x="42" y="546" width="31" height="42"/>
+  <object id="29" type="player" gid="290" x="57" y="525" width="31" height="42"/>
  </objectgroup>
 </map>

@@ -203,11 +203,11 @@
                  "id":29,
                  "name":"",
                  "rotation":0,
-                 "type":"player_start",
+                 "type":"player",
                  "visible":true,
                  "width":31,
-                 "x":42,
-                 "y":546
+                 "x":57,
+                 "y":525
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -308,6 +308,11 @@
          "spacing":0,
          "tilecount":7,
          "tileheight":42,
+         "tileoffset":
+            {
+             "x":-15,
+             "y":21
+            },
          "tilewidth":31
         }],
  "tilewidth":42,

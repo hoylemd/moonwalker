@@ -20,9 +20,11 @@
   <image source="../../static/spritesheets/items.png" width="336" height="168"/>
  </tileset>
  <tileset firstgid="290" name="player" tilewidth="31" tileheight="42" tilecount="7" columns="7">
+  <tileoffset x="-15" y="21"/>
   <image source="../../static/spritesheets/player.png" width="217" height="42"/>
  </tileset>
  <tileset firstgid="297" name="spider" tilewidth="42" tileheight="32" tilecount="5" columns="5">
+  <tileoffset x="-21" y="15"/>
   <image source="../../static/spritesheets/spider.png" width="210" height="32"/>
  </tileset>
  <layer name="background" width="23" height="15">
@@ -143,9 +145,9 @@
     <property name="side" value="left"/>
    </properties>
   </object>
-  <object id="64" type="player_start" gid="290" x="42" y="546" width="31" height="42"/>
-  <object id="65" type="spider" gid="297" x="42" y="420" width="42" height="32"/>
-  <object id="66" type="spider" gid="297" x="462" y="168" width="42" height="32"/>
-  <object id="67" type="spider" gid="297" x="672" y="378" width="42" height="32"/>
+  <object id="64" type="player" gid="290" x="57" y="525" width="31" height="42"/>
+  <object id="65" type="spider" gid="297" x="63" y="405" width="42" height="32"/>
+  <object id="66" type="spider" gid="297" x="483" y="153" width="42" height="32"/>
+  <object id="67" type="spider" gid="297" x="693" y="363" width="42" height="32"/>
  </objectgroup>
 </map>
