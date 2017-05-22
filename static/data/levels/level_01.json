@@ -564,6 +564,54 @@
                  "width":21,
                  "x":650,
                  "y":336
+                }, 
+                {
+                 "gid":290,
+                 "height":42,
+                 "id":64,
+                 "name":"",
+                 "rotation":0,
+                 "type":"player_start",
+                 "visible":true,
+                 "width":31,
+                 "x":42,
+                 "y":546
+                }, 
+                {
+                 "gid":297,
+                 "height":32,
+                 "id":65,
+                 "name":"",
+                 "rotation":0,
+                 "type":"spider",
+                 "visible":true,
+                 "width":42,
+                 "x":42,
+                 "y":420
+                }, 
+                {
+                 "gid":297,
+                 "height":32,
+                 "id":66,
+                 "name":"",
+                 "rotation":0,
+                 "type":"spider",
+                 "visible":true,
+                 "width":42,
+                 "x":462,
+                 "y":168
+                }, 
+                {
+                 "gid":297,
+                 "height":32,
+                 "id":67,
+                 "name":"",
+                 "rotation":0,
+                 "type":"spider",
+                 "visible":true,
+                 "width":42,
+                 "x":672,
+                 "y":378
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -572,7 +620,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":64,
+ "nextobjectid":68,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":42,
@@ -651,6 +699,32 @@
              "x":-21,
              "y":21
             },
+         "tilewidth":42
+        }, 
+        {
+         "columns":7,
+         "firstgid":290,
+         "image":"..\/..\/spritesheets\/player.png",
+         "imageheight":42,
+         "imagewidth":217,
+         "margin":0,
+         "name":"player",
+         "spacing":0,
+         "tilecount":7,
+         "tileheight":42,
+         "tilewidth":31
+        }, 
+        {
+         "columns":5,
+         "firstgid":297,
+         "image":"..\/..\/spritesheets\/spider.png",
+         "imageheight":32,
+         "imagewidth":210,
+         "margin":0,
+         "name":"spider",
+         "spacing":0,
+         "tilecount":5,
+         "tileheight":32,
          "tilewidth":42
         }],
  "tilewidth":42,

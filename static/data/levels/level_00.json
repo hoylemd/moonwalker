@@ -196,6 +196,18 @@
                  "width":21,
                  "x":588,
                  "y":378
+                }, 
+                {
+                 "gid":290,
+                 "height":42,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"player_start",
+                 "visible":true,
+                 "width":31,
+                 "x":42,
+                 "y":546
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -204,7 +216,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":29,
+ "nextobjectid":30,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":42,
@@ -284,6 +296,19 @@
              "y":21
             },
          "tilewidth":42
+        }, 
+        {
+         "columns":7,
+         "firstgid":290,
+         "image":"..\/..\/spritesheets\/player.png",
+         "imageheight":42,
+         "imagewidth":217,
+         "margin":0,
+         "name":"player",
+         "spacing":0,
+         "tilecount":7,
+         "tileheight":42,
+         "tilewidth":31
         }],
  "tilewidth":42,
  "version":1,

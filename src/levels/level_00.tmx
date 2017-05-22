@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="29">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="30">
  <tileset firstgid="1" name="background" tilewidth="630" tileheight="630" tilecount="1" columns="1">
   <tileoffset x="0" y="588"/>
   <image source="../../static/images/blue_grass_background_scaled.png" width="630" height="630"/>
@@ -18,6 +18,9 @@
  <tileset firstgid="258" name="items" tilewidth="42" tileheight="42" tilecount="32" columns="8">
   <tileoffset x="-21" y="21"/>
   <image source="../../static/spritesheets/items.png" width="336" height="168"/>
+ </tileset>
+ <tileset firstgid="290" name="player" tilewidth="31" tileheight="42" tilecount="7" columns="7">
+  <image source="../../static/spritesheets/player.png" width="217" height="42"/>
  </tileset>
  <layer name="background" width="23" height="15">
   <data encoding="csv">
@@ -79,5 +82,6 @@
     <property name="side" value="right"/>
    </properties>
   </object>
+  <object id="29" type="player_start" gid="290" x="42" y="546" width="31" height="42"/>
  </objectgroup>
 </map>
