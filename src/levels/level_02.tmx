@@ -1,48 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="23" height="15" tilewidth="42" tileheight="42" nextobjectid="1">
- <tileset firstgid="1" name="spritesheet_ground_scaled" tilewidth="42" tileheight="42" tilecount="128" columns="8">
-  <image source="../../static/spritesheets/spritesheet_ground_scaled.png" width="336" height="672"/>
- </tileset>
- <tileset firstgid="129" name="blue_grass_background_scaled" tilewidth="630" tileheight="630" tilecount="1" columns="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="46" height="15" tilewidth="42" tileheight="42" nextobjectid="99">
+ <tileset firstgid="1" name="background" tilewidth="630" tileheight="630" tilecount="1" columns="1">
+  <tileoffset x="0" y="588"/>
   <image source="../../static/images/blue_grass_background_scaled.png" width="630" height="630"/>
  </tileset>
- <layer name="backgroundLayer" width="23" height="15">
+ <tileset firstgid="2" name="ground" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/ground.png" width="336" height="672"/>
+ </tileset>
+ <tileset firstgid="130" name="objects" tilewidth="42" tileheight="42" tilecount="128" columns="8">
+  <image source="../../static/spritesheets/objects.png" width="336" height="672"/>
+  <tile id="91">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="258" name="items" tilewidth="42" tileheight="42" tilecount="32" columns="8">
+  <tileoffset x="-21" y="21"/>
+  <image source="../../static/spritesheets/items.png" width="336" height="168"/>
+ </tileset>
+ <tileset firstgid="290" name="player" tilewidth="31" tileheight="42" tilecount="7" columns="7">
+  <tileoffset x="-15" y="21"/>
+  <image source="../../static/spritesheets/player.png" width="217" height="42"/>
+ </tileset>
+ <tileset firstgid="297" name="spider" tilewidth="42" tileheight="32" tilecount="5" columns="5">
+  <tileoffset x="-21" y="15"/>
+  <image source="../../static/spritesheets/spider.png" width="210" height="32"/>
+ </tileset>
+ <layer name="background" width="46" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-129,0,0,0,0,0,0,0,0,0,0,0,0,0,0,129,0,0,0,0,0,0,0
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="blockedLayer" width="23" height="15">
+ <layer name="terrain" width="46" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,17,9,1,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,17,9,9,9,9,1,0,0,0,0,0,0,0,0,0,0,0,0,
-9,9,9,9,9,2,2,2,2,2,2,9,9,9,9,9,9,9,9,9,9,9,9,
-2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,18,10,10,10,10,10,10,10,2,0,18,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,2,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,10,2,0,0,0,0,0,18,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,3,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,2,0,0,0,0,0,0,0,0,0,0,
+10,10,10,10,10,2,0,0,0,0,0,0,0,0,18,10,10,10,2,0,0,0,0,0,0,0,0,18,10,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,122,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,10,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,122,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,122,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,10,2,0,0,0,0,11,0,0,18,10,10,10,10,10,10,10,10,18,10,10,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,
+10,10,10,10,2,0,0,0,0,0,0,0,18,10,10,10,10,10,10,10,10,10,2,0,0,0,0,0,0,0,3,18,10,10,10,10,10,10,10,2,0,0,0,0,0,0,
+3,3,3,3,3,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10,10,3,3,3,3,3,3,3,3,3,3,10,10,10,10,10,10
 </data>
  </layer>
- <objectgroup name="objectLayer"/>
+ <objectgroup name="objects">
+  <object id="3" type="door" gid="221" x="168" y="252" width="42" height="42"/>
+  <object id="4" gid="213" x="168" y="210" width="42" height="42"/>
+  <object id="14" type="key" gid="285" x="1869" y="105" width="42" height="42"/>
+  <object id="42" type="coin" gid="287" x="231" y="231" width="42" height="42"/>
+  <object id="43" type="coin" gid="287" x="189" y="231" width="42" height="42"/>
+  <object id="55" type="platform_edge" x="251" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="60" type="platform_edge" x="-22" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="64" type="player" gid="290" x="57" y="231" width="31" height="42"/>
+  <object id="65" type="spider" gid="297" x="105" y="531" width="42" height="32"/>
+  <object id="68" type="platform_edge" x="209" y="504" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="69" type="platform_edge" x="797" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="70" type="platform_edge" x="755" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="71" type="platform_edge" x="881" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="72" type="platform_edge" x="1049" y="84" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="73" type="platform_edge" x="1343" y="84" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="74" type="platform_edge" x="1259" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="75" type="platform_edge" x="1175" y="294" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="76" type="platform_edge" x="1091" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="77" type="platform_edge" x="965" y="504" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="78" type="platform_edge" x="1301" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="79" type="platform_edge" x="1511" y="168" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="80" type="platform_edge" x="1889" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="81" type="platform_edge" x="1763" y="252" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="82" type="platform_edge" x="1721" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="83" type="platform_edge" x="1679" y="504" width="21" height="63">
+   <properties>
+    <property name="side" value="right"/>
+   </properties>
+  </object>
+  <object id="84" type="platform_edge" x="482" y="504" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="85" type="platform_edge" x="356" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="86" type="platform_edge" x="566" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="87" type="platform_edge" x="902" y="84" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="88" type="platform_edge" x="944" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="89" type="platform_edge" x="1028" y="294" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="90" type="platform_edge" x="1112" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="91" type="platform_edge" x="1196" y="126" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="92" type="platform_edge" x="1238" y="84" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="93" type="platform_edge" x="1238" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="94" type="platform_edge" x="1364" y="378" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="95" type="platform_edge" x="1406" y="168" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="96" type="platform_edge" x="1616" y="42" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="97" type="platform_edge" x="1700" y="252" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+  <object id="98" type="platform_edge" x="1826" y="210" width="21" height="63">
+   <properties>
+    <property name="side" value="left"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
