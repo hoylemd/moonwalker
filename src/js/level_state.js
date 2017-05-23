@@ -5,7 +5,6 @@ let preload = require('./preload');
 
 function LevelState(game) {
   const GRAVITY = 1200;
-  const LEVEL_COUNT = 2;
   const KEY_HOVER_MARGIN = 3;
   const DEBUG_MODE = true;
   const TILE_UNIT_DIMENSION = 42;
@@ -30,7 +29,11 @@ function LevelState(game) {
       }
     }, this);
 
-    this.level = (spec.level || 0) % LEVEL_COUNT;
+
+    this.level = spec.level || 0;
+    if (this.game.levels) {
+      this.level %= this.game.levels.length;
+    }
     this.carried_player = spec.player;
   };
 
@@ -271,7 +274,7 @@ function LevelState(game) {
   this.open_door = function(player, door) {
     this.sfx.door.play();
     let next_level = this.level + 1;
-    if (next_level < LEVEL_COUNT) {
+    if (next_level < this.game.levels.length) {
       this.game.state.restart(true,                                             // keep all assets
                               false,                                            // don't keep entities
                               {level: next_level,

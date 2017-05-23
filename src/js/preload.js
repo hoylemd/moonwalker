@@ -1,40 +1,46 @@
 let Phaser = require('./vendor').phaser;
 
+
 function preload() {
-  this.game.load.image('key', 'images/key.png');
-  this.game.load.image('tiles:ground', 'spritesheets/ground.png');
-  this.game.load.image('tiles:background', 'images/blue_grass_background_scaled.png');
+  let game = this.game;
+  game.levels = [];
 
-  this.game.load.image('invisible-wall', 'images/invisible_wall.png');
-  this.game.load.image('icon:coin', 'images/coin_icon.png');
+  function preload_level(number) {
+    game.levels.push(
+      game.load.tilemap(`level:${number}`,
+                        `data/levels/level_${number}.json`,
+                        null,
+                        Phaser.Tilemap.TILED_JSON));
+  }
 
-  this.game.load.spritesheet('coin', 'spritesheets/coin_animated.png', 22, 22);
-  this.game.load.spritesheet('spider', 'spritesheets/spider.png', 42, 32);
-  this.game.load.spritesheet('player', 'spritesheets/player.png', 31, 42);
-  this.game.load.spritesheet('door', 'images/door.png', 42, 66);
-  this.game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
+  game.load.image('key', 'images/key.png');
+  game.load.image('tiles:ground', 'spritesheets/ground.png');
+  game.load.image('tiles:background', 'images/blue_grass_background_scaled.png');
 
-  this.game.load.atlasXML('grey_ui',
+  game.load.image('invisible-wall', 'images/invisible_wall.png');
+  game.load.image('icon:coin', 'images/coin_icon.png');
+
+  game.load.spritesheet('coin', 'spritesheets/coin_animated.png', 22, 22);
+  game.load.spritesheet('spider', 'spritesheets/spider.png', 42, 32);
+  game.load.spritesheet('player', 'spritesheets/player.png', 31, 42);
+  game.load.spritesheet('door', 'images/door.png', 42, 66);
+  game.load.spritesheet('icon:key', 'images/key_icon.png', 34, 30);
+
+  game.load.atlasXML('grey_ui',
                           'spritesheets/greySheet.png',
                           'spritesheets/greySheet.xml');
 
-  this.game.load.image('font:numbers', 'images/numbers.png');
+  game.load.image('font:numbers', 'images/numbers.png');
 
-  this.game.load.audio('sfx:jump', 'audio/jump.wav');
-  this.game.load.audio('sfx:coin', 'audio/coin.wav');
-  this.game.load.audio('sfx:stomp', 'audio/stomp.wav');
-  this.game.load.audio('sfx:key', 'audio/key.wav');
-  this.game.load.audio('sfx:door', 'audio/door.wav');
+  game.load.audio('sfx:jump', 'audio/jump.wav');
+  game.load.audio('sfx:coin', 'audio/coin.wav');
+  game.load.audio('sfx:stomp', 'audio/stomp.wav');
+  game.load.audio('sfx:key', 'audio/key.wav');
+  game.load.audio('sfx:door', 'audio/door.wav');
 
-  this.game.load.tilemap('level:0',
-                         'data/levels/level_00.json',
-                         null,
-                         Phaser.Tilemap.TILED_JSON);
-
-  this.game.load.tilemap('level:1',
-                         'data/levels/level_01.json',
-                         null,
-                         Phaser.Tilemap.TILED_JSON);
+  preload_level(0);
+  preload_level(1);
+  preload_level(2);
 }
 
 module.exports = preload;
